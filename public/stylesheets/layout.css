@@ -1,0 +1,55 @@
+* {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: rgb(245, 244, 219);
+  color: rgb(0, 6, 59);
+  border-top: 5px solid rgb(143, 18, 18);
+}
+
+
+.branding {
+  position: absolute;
+  z-index: 4;
+  bottom: 35px;
+  left: 550px;
+  text-align: center;
+  font-family: Georgia;
+  line-height: 18px;
+}
+
+#social-network {
+  position: absolute;
+  top: 40px;
+  left: 25px;
+  font-family: Georgia;
+  line-height: 18px;
+  font-size: 56px;
+}
+
+
+
+    #navigation {
+      text-align: center;
+      display: block;
+      position: absolute;
+      top: 90px;
+      float: left;
+      width: 100%;
+    }
+    
+    div {
+      float: left;
+      width: 25%;
+      text-align: center;
+      background-color: rgb(233, 210, 167);
+      border-top: 5px solid rgb(143, 18, 18);
+    }
