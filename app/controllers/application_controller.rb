@@ -10,8 +10,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :index, :layout => :layout
+    erb :login
   end
+
+  post '/login' do
+    puts params
+    "redirect"
+  end
+
+  post '/signup' do
+    puts params
+    "redirect"
+  end
+
 
 end
 

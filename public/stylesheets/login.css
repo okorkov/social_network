@@ -1,0 +1,84 @@
+#login_page {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(245, 244, 219);
+  color: rgb(0, 6, 59);
+}
+
+#social-network {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: Georgia;
+  line-height: 18px;
+  font-size: 56px;
+}
+
+.branding {
+  position: absolute;
+  z-index: 4;
+  bottom: 3%;
+  left: 43%;
+  text-align: center;
+  font-family: Georgia;
+  line-height: 18px;
+}
+
+.welcome {
+  position: absolute;
+  top: 150px;
+  left: 490px;
+  font-family: Georgia;
+}
+
+.login {
+  position: absolute;
+  top: 220px;
+  left: 555px;
+}
+
+#sign_up_offer {
+  position: absolute;
+  top: 300px;
+  left: 690px;
+}
+
+.signup {
+  position: absolute;
+  top: 370px;
+  left: 580px;
+  text-align: center;
+}
+
+
+input[type=text], input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px;
+  width: 85%;
+  border: 1px solid #f6f6f6;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=button], input[type=submit]  {
+  background-color: #af6654;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 10px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+
+}
