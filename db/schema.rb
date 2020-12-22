@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(version: 20201222002958) do
 
   create_table "friends", force: :cascade do |t|
-    t.string "sender"
-    t.string "receiver"
-    t.string "status"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.string  "status"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string   "post_body"
-    t.string   "user_id"
-    t.datetime "when_posted"
+    t.integer  "user_id"
+    t.datetime "when_posted", default: '2020-12-22 02:00:04', null: false
   end
 
   create_table "users", force: :cascade do |t|

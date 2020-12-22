@@ -10,6 +10,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'bcrypt'
 gem 'tux'
+gem 'dotenv'
 
 group :development do
   gem 'pry'
