@@ -22,5 +22,14 @@
 </section>
 
 <section class="posts">
-<h4>Post</h4>
+<p style="text-align:center">Posts:</p>
+<br>
+<%if @posts.size == 0%>
+<p style="text-align:center"><%="You have no posts yet."%></p>
+<%end%>
+<%@posts.each do |post|%>
+<h3><%=post.post_body%></h3>
+<h6>posted by: <%=User.find(post.user_id).username%> on <%=post.when_posted %></h6>
+<br>
+<%end%>
 </section>
