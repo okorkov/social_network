@@ -9,8 +9,8 @@
   <div class="all_users"> <p> Users: <%=User.all.size %></p> </div>
   <div class="login">
     <form action='/login' method='post'>
-      <input type="text" name="username" placeholder="Username:">
-      <input type="password" name="password" placeholder="Password:">
+      <input type="text" name="username" placeholder="Username:" required>
+      <input type="password" name="password" placeholder="Password:" required>
       <input type="submit" value="Log In">
     </form>
   </div>
@@ -19,11 +19,11 @@
 
   <div class="signup">
     <form action='/signup' method='post'>
-      <div> <input type="text" name="username" placeholder="Username:" ></div>
-      <div> <input type="text" name="email" placeholder="Email:" ></div>
-      <div> <input type="password" name="password" placeholder="Password:"></div>
-      <input type="text" name="first_name" placeholder="First Name:">
-      <input type="text" name="last_name" placeholder="Last Name:">
+      <div> <input type="text" name="username" placeholder="Username:" required ></div>
+      <div> <input type="text" name="email" placeholder="Email:" required></div>
+      <div> <input type="password" name="password" placeholder="Password:" required></div>
+      <input type="text" name="first_name" placeholder="First Name:" required>
+      <input type="text" name="last_name" placeholder="Last Name:" required>
       <p>Date of Birth:</p>
       <input type="date" id="birthday" name="dob">
       <br>

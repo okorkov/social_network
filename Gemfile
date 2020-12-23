@@ -11,6 +11,10 @@ gem 'shotgun'
 gem 'bcrypt'
 gem 'tux'
 gem 'dotenv'
+gem 'json'
+gem 'uri'
+gem 'openssl'
+gem 'net-http'
 
 group :development do
   gem 'pry'
