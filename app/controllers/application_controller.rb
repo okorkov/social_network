@@ -14,8 +14,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    puts params
-    "redirect"
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/home"
+    else
+      redirect "/error/wrong user name or password"
+    end
   end
 
   post '/signup' do
@@ -25,12 +30,18 @@ class ApplicationController < Sinatra::Base
     if User.find_by(email: params[:email]) != nil
       redirect '/error/this email already been used'
     end
+    params[:first_name] = params[:first_name].downcase.capitalize
+    params[:last_name] = params[:last_name].downcase.capitalize
+    params[:email] = params[:email].downcase
       @user = User.new(params)
-      if @user.save
-        redirect "/home"
-      else
-        redirect "/error/we weren't able to register you"
-      end
+        if @user.save
+          user = User.find_by(:username => params[:username])
+          user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect "/home"
+        else
+          redirect "/error/we weren't able to register you"
+        end
   end
 
   get "/logout" do
@@ -43,9 +54,16 @@ class ApplicationController < Sinatra::Base
     erb :login_signup_error
   end
 
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+  end
+
 end
 
 
-# "username"=>"okorkov", "email"=>"ceo@socialnetwork.com", "password"=>"1827qaws", 
-# "first_name"=>"alex", "last_name"=>"Okarkau", "birthday"=>"1992-04-27"}
-#<Rack::Session::Abstract::PersistedSecure::SecureSessionHash:0x00007fb3012a1ff0>
