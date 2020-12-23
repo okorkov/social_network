@@ -7,6 +7,19 @@ class ProfileController < ApplicationController
     erb :"/pages/profile", :layout => :"/layout/layout"
   end
 
+  get '/profile/:id' do
+    id = params[:id]
+    if User.find_by(id: id)
+      @user = User.find(id)
+      @location = CurrentLocation.location_info
+      @posts = Post.where(user_id: id).reverse
+      erb :"/pages/home", :layout => :"/layout/layout"
+    else
+      redirect '/error/there is no user with this id'
+    end
+  end
+
+
   patch '/profile/:id' do
     @user = self.current_user
     case
@@ -42,8 +55,3 @@ class ProfileController < ApplicationController
   end
   
 end
-
-{"_method"=>"patch", "username"=>"alex", "first_name"=>"Alex", 
-  "last_name"=>"Okarkau", "email"=>"ceo@socialnetwork.com", "dob"=>"1992-04-27", 
-  "gender"=>"male", "old_password"=>"", "new_password"=>"", "id"=>"8"}
-    

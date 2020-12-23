@@ -4,25 +4,37 @@
 <%if @user.id == session[:user_id]%>
 <h3 style="text-align:center">(you)<h3>
 <%end%>
-<img src="/images/profile_default.png" width="200" height="150">
-<br><br>
-<h4>Name: <%=@user.first_name%> <%=@user.last_name%></h4>
+<%if File.exists?("public/images/profile/#{@user.id}") %>
+<%pic = Dir["public/images/profile/#{@user.id}/*"].collect {|file| file}%>
+<%link = pic[0].split('/').drop(1).join('/')%> 
+<img src="<%=link%>" width="200" height="150" >
+<%else%>
+<img src="/images/profile_default.png" width="200" height="150" alt="Default profile picture">
+<%end%>
+<%if @user.id == session[:user_id]%>
+<form action="/pic" method="post">
+  <input type="text" name ="url" placeholder="URL" required>
+  <input type="submit" value="update profile image">
+</form>
+<%end%>
+<br>
+<h5>Name: <%=@user.first_name%> <%=@user.last_name%></h5>
 <br><br>
 <% %>
-<h4>Date of Birth: <%=@user.dob%></h4>
+<h5>Date of Birth: <%=@user.dob%></h5>
 <br><br>
-<h4>Gender: <%=@user.gender%></h4>
+<h5>Gender: <%=@user.gender%></h5>
 <br><br>
-<h4>Email:</h4>
+<h5>Email:</h4>
 <br>
-<h4><%=@user.email%></h4>
+<h5><%=@user.email%></h5>
 <br><br>
 <%if @user.id == session[:user_id]%>
-<h4>Current Location:</h4>
+<h5>Current Location:</h5>
 <br>
-<h4><%=@location['city']%>,</h4>
+<h5><%=@location['city']%>,</h5>
 <br>
-<h4><%=@location['region']%>, <%=@location['country']%></h4>
+<h5><%=@location['region']%>, <%=@location['country']%></h5>
 <%end%>
 </section>
 

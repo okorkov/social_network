@@ -1,4 +1,5 @@
 require './config/environment'
+require 'down'
 
 class ApplicationController < Sinatra::Base
 
@@ -42,6 +43,17 @@ class ApplicationController < Sinatra::Base
         else
           redirect "/error/we weren't able to register you"
         end
+  end
+
+  post '/pic' do
+    @user = self.current_user
+    directory_name = "public/images/profile/#{@user.id}"
+    Dir.mkdir(directory_name) unless File.exists?(directory_name)
+    tempfile = Down.download("#{params[:url]}", destination: "#{directory_name}") 
+    Dir["public/images/profile/#{@user.id}/*"].each do |file|
+      File.rename(file, "public/images/profile/#{@user.id}/#{@user.id}.png")
+    end
+    redirect "/home"
   end
 
   get "/logout" do
