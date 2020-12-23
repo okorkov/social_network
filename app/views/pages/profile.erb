@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="/stylesheets/profile.css" />
+
+<section class="profile">
+  <h1>REVIEW OR EDIT YOUR PROFILE</h1>
+  <br>
+  <form action="/profile/<%=@user.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <h3>User Name: <input type='text' name="username" value="<%=@user.username%>" size="16"></h3>
+    <h3>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h3>
+    <h3>Email Address <input type='text' name="email" value="<%=@user.email%>" size="25"></h3>
+    <h3>Date of Birth: <input type='date' name="dob" value="<%=@user.dob%>" ></h3>
+    <h3>Gender: 
+      <input type="radio" id="male" name="gender" value="male" <%='checked' if @user.gender.include?("male") %>>
+      <label for="male"> male</label>
+      <input type="radio" id="female" name="gender" value="female" <%='checked' if @user.gender.include?("female") %>>
+      <label for="female"> female</label>
+      <input type="radio" id="other" name="gender" value="other" <%='checked' if @user.gender.include?("other") %>>
+      <label for="other"> other</label>
+    </h3>
+
+</form> 
+</section>
+
+
+<!-- 
+    t.string "username" *
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name" *
+    t.string "last_name" *
+    t.string "gender" *
+    t.string "dob" *
+    t.string "cell_phone"
+    t.string "avatar"
+
+
+
+
+    <form action='/signup' method='post'>
+      <div> <input type="text" name="username" placeholder="Username:" required ></div>
+      <div> <input type="text" name="email" placeholder="Email:" required></div>
+      <div> <input type="password" name="password" placeholder="Password:" required></div>
+      <input type="text" name="first_name" placeholder="First Name:" required>
+      <input type="text" name="last_name" placeholder="Last Name:" required>
+      <p>Date of Birth:</p>
+      <input type="date" id="birthday" name="dob">
+      <br>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male"> male</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female"> female</label>
+      <input type="radio" id="other" name="gender" value="other">
+      <label for="other"> other</label>
+      <br>
+      <input type="submit" value="Sign Up">
+    </form>
+-->
