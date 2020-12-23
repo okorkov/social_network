@@ -2,12 +2,11 @@
 <section id="login_page">
 
   <h1 id="social-network">SocialNetwork<h1>
-
   <div class="welcome">
   <h3>Welcome to the SocialNetwork<h3>
   <h6>Log in:</h6>
   </div>
-
+  <div class="all_users"> <p> Users: <%=User.all.size %></p> </div>
   <div class="login">
     <form action='/login' method='post'>
       <input type="text" name="username" placeholder="Username:">
@@ -21,21 +20,29 @@
   <div class="signup">
     <form action='/signup' method='post'>
       <div> <input type="text" name="username" placeholder="Username:" ></div>
-      <div> <input type="text" name="username" placeholder="Email:" ></div>
-      <div> <input type="password" name="password" placeholder="Password:"></div>
+      <div> <input type="text" name="email" placeholder="Email:" ></div>
+      <div> <input type="password" name="password_digest" placeholder="Password:"></div>
       <input type="text" name="first_name" placeholder="First Name:">
       <input type="text" name="last_name" placeholder="Last Name:">
       <p>Date of Birth:</p>
-      <input type="date" id="birthday" name="birthday">
+      <input type="date" id="birthday" name="dob">
+      <br>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male"> male</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female"> female</label>
+      <input type="radio" id="other" name="gender" value="other">
+      <label for="other"> other</label>
       <br>
       <input type="submit" value="Sign Up">
     </form>
+      
   </div>
 
   
 
 
   <div class="branding">
-    <small>&copy; 2020 <strong>SocialNetwork</strong></small>
+    <a href="https://github.com/okorkov/social_network" target="_blank" <p>&copy; 2020 <strong>SocialNetwork</strong></p>
   </div>
  </section>

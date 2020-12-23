@@ -14,14 +14,14 @@
   font-size: 56px;
 }
 
-.branding {
+.branding{
   position: absolute;
   z-index: 4;
   bottom: 3%;
   left: 43%;
   text-align: center;
   font-family: Georgia;
-  line-height: 18px;
+  line-height: 10px;
 }
 
 .welcome {
@@ -36,6 +36,9 @@
   top: 220px;
   left: 555px;
 }
+
+
+
 
 #sign_up_offer {
   position: absolute;
