@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201222002958) do
+ActiveRecord::Schema.define(version: 20201224071832) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "sender_id"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20201222002958) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "post_body"
-    t.integer  "user_id"
-    t.datetime "when_posted", default: '2020-12-22 02:00:04', null: false
+    t.string  "post_body"
+    t.integer "user_id"
+    t.string  "when_posted"
   end
 
   create_table "users", force: :cascade do |t|

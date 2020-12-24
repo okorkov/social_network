@@ -43,6 +43,7 @@
 <form action='/posts' method='post'>
   <input type="text" name="post_body" size="50" required>
   <input type="hidden" name="user_id" value="<%=@user.id%>">
+  <input type="hidden" name="when_posted" value="<%=Time.now%>">
   <input type="submit" value="post">
 </form>
 <br>

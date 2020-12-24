@@ -1,0 +1,22 @@
+.posts {
+  position: absolute;
+  left: 50px;
+  top: 130px;
+  font-family: Georgia;
+  line-height: 18px;
+  font-size: 16px;
+  background-color: rgb(191, 240, 247);
+  width: 88%;
+  border: 5px solid rgb(143, 18, 18);
+  padding: 30px;
+  margin: 0px;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+}
