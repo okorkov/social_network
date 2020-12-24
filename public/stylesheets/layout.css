@@ -43,7 +43,7 @@ body {
       width: 100%;
     }
     
-    div {
+    div, #logout {
       float: left;
       width: 25%;
       text-align: center;
