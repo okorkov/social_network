@@ -1,67 +1,66 @@
 <link rel="stylesheet" href="/stylesheets/home.css" />
 
 <section class="home">
-<%if @user.id == session[:user_id]%>
-<h3 style="text-align:center">(you)<h3>
-<%end%>
-<%if File.exists?("public/images/profile/#{@user.id}") %>
-<%pic = Dir["public/images/profile/#{@user.id}/*"].collect {|file| file}%>
-<%link = pic[0].split('/').drop(1).join('/')%> 
-<img src="<%=link%>" width="200" height="150" >
-<%else%>
-<img src="/images/profile_default.png" width="200" height="150" alt="Default profile picture">
-<%end%>
-<%if @user.id == session[:user_id]%>
-<form action="/pic" method="post">
-  <input type="text" name ="url" placeholder="URL" required>
-  <input type="submit" value="update profile image">
-</form>
-<%end%>
-<br>
-<h5>Name: <%=@user.first_name%> <%=@user.last_name%></h5>
-<br><br>
-<% %>
+  <%if @user.id == session[:user_id]%>
+  <h3 style="text-align:center">(you)<h3>
+      <%end%>
+      <%if File.exists?("public/images/profile/#{@user.id}") %>
+      <%pic = Dir["public/images/profile/#{@user.id}/*"].collect {|file| file}%>
+      <%link = pic[0].split('/').drop(1).join('/')%>
+      <img src="<%=link%>" width="200" height="150">
+      <%else%>
+      <img src="/images/profile_default.png" width="200" height="150" alt="Default profile picture">
+      <%end%>
+      <%if @user.id == session[:user_id]%>
+      <form action="/pic" method="post">
+        <input type="text" name="url" placeholder="URL" required>
+        <input type="submit" value="update profile image">
+      </form>
+      <%end%>
+      <h5>Name: <%=@user.first_name%> <%=@user.last_name%></h5>
+      <br><br>
+      <% %>
 <h5>Date of Birth: <%=@user.dob%></h5>
-<br><br>
-<h5>Gender: <%=@user.gender%></h5>
-<br><br>
-<h5>Email:</h4>
-<br>
-<h5><%=@user.email%></h5>
-<br><br>
-<%if @user.id == session[:user_id]%>
-<h5>Current Location:</h5>
-<br>
-<h5><%=@location['city']%>,</h5>
-<br>
-<h5><%=@location['region']%>, <%=@location['country']%></h5>
-<%end%>
+      <br><br>
+      <h5>Gender: <%=@user.gender%></h5>
+      <br><br>
+      <h5>Email:</h4>
+        <br>
+        <h5><%=@user.email%></h5>
+        <br><br>
+        <%if @user.id == session[:user_id]%>
+        <h5>Current Location:</h5>
+        <br>
+        <h5><%=@location['city']%>,</h5>
+        <br>
+        <h5><%=@location['region']%>, <%=@location['country']%></h5>
+        <%end%>
 </section>
 
 <section class="posts">
-<p style="text-align:left">Create New Post:</p>
-<form action='/posts' method='post'>
-  <input type="text" name="post_body" size="50" required>
-  <input type="hidden" name="user_id" value="<%=@user.id%>">
-  <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%> value=" <%="#{@time[0]} at #{@time[1]}"%>">
-  <input type="submit" value="post">
-</form>
-<br>
-<h3>Old Posts:</h3>
-<h3>__________________________________________</h3>
-<br>
-<%if @posts.size == 0%>
-<p style="text-align:center"><%="You have no posts yet."%></p>
-<%end%>
-<%counter = 0%>
-<%while counter < 7%>
-<%if @posts[counter] != nil%>
-<h3><%=@posts[counter].post_body%></h3>
-<h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
-<%counter += 1%>
-<br>
-<%else%>
-<%counter += 1%>
-<%end%>
-<%end%>
+  <p style="text-align:left">Create New Post:</p>
+  <form action='/posts' method='post'>
+    <input type="text" name="post_body" size="50" required>
+    <input type="hidden" name="user_id" value="<%=@user.id%>">
+    <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%>
+      value=" <%="#{@time[0]} at #{@time[1]}"%>">
+    <input type="submit" value="post">
+  </form>
+  <h3>Old Posts:</h3>
+  <h3>__________________________________________</h3>
+  <br>
+  <%if @posts.size == 0%>
+  <p style="text-align:center"><%="You have no posts yet."%></p>
+  <%end%>
+  <%counter = 0%>
+  <%while counter < 8%>
+  <%if @posts[counter] != nil%>
+  <h3><%=@posts[counter].post_body%></h3>
+  <h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
+  <%counter += 1%>
+  <br>
+  <%else%>
+  <%counter += 1%>
+  <%end%>
+  <%end%>
 </section>
