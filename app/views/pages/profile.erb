@@ -26,6 +26,16 @@
     <br>
     <h2>Save Changes   <input type="submit" value='Update'></h2>
 </form> 
+<br><br><br>
+  <form action="/profile" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete" >
+    <h2 style="color:coral;">DELETE ACCOUNT <button onclick="myFunction()" style="height:30px; width:80px" value='DELETE'>DELETE</button></h2>
+      <script>
+        function myFunction() {
+          confirm("Are you sure you want to delete your page? It will be gone for good!");
+        }
+      </script>
+   </form>                                    
 </section>
 
 

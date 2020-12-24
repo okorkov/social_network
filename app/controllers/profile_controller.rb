@@ -51,7 +51,11 @@ class ProfileController < ApplicationController
           redirect "error/old password doesn't match"
         end
      end
+  end
 
+  delete '/profile' do
+    User.find_by(id: session[:user_id]).destroy
+    redirect "/"
   end
   
 end
