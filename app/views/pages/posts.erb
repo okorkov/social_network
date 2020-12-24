@@ -17,14 +17,23 @@
   <p style="text-align:center"><%="You have no posts yet."%></p>
   <%end%>
   <%counter = 0%>
-  <%while counter < 8%>
-  <%if @posts[counter] != nil%>
-  <h3><%=@posts[counter].post_body%></h3>
-  <h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
-  <%counter += 1%>
-  <br>
-  <%else%>
-  <%counter += 1%>
+  <%while counter < 7%>
+    <%if @posts[counter] != nil%>
+      <h3><%=@posts[counter].post_body%></h3>
+      <h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %> <a href="/posts/<%=@posts[counter].id%>/edit">edit</a></h6>
+     <%counter += 1%>
+     <br>
+   <%else%>
+     <%counter += 1%>
+   <%end%>
   <%end%>
-  <%end%>
+    <form action="/posts/<%=@user.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete" >
+    <h2 style="color:coral;"><button onclick="myFunction()" value='DELETE'>Delete all of your posts</button></h2>
+      <script>
+        function myFunction() {
+          confirm("Are you sure you want to delete all of your posts?");
+        }
+      </script>
+   </form>              
 </div>

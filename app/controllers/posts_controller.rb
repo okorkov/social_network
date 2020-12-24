@@ -16,8 +16,24 @@ class PostsController < ApplicationController
     redirect '/posts'
   end
 
-  get '/posts/:id' do
+  delete '/posts/:id' do
+    @posts = Post.where(user_id: params[:id])
+    @posts.each {|post| post.destroy}
+    redirect '/posts'
+  end
 
+  get '/posts/:id/edit' do
+    if Post.find_by(id: params[:id]) != nil
+      @user = self.current_user
+      @post = Post.find_by(id: params[:id])
+      if @user.id == @post.user_id
+        erb :"/pages/post_edit", :layout => :"/layout/layout"
+      else
+        redirect "/error/not allowed to edit this post"
+      end
+    else
+      redirect "/error/post with this id doesn't exists"
+    end
   end
 
 end

@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="/stylesheets/posts.css" />
+
+<div class="posts">
+  <p>Create New Post:</p>
+  <form action='/posts_page' method='post'>
+    <input type="text" name="post_body" size="50" required>
+    <input type="hidden" name="user_id" value="<%=@user.id%>">
+    <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%>
+      value=" <%="#{@time[0]} at #{@time[1]}"%>">
+    <input type="submit" value="post">
+  </form>
+  </div>
