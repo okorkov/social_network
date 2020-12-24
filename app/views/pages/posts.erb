@@ -5,6 +5,7 @@
 <form action='/posts_page' method='post'>
   <input type="text" name="post_body" size="50" required>
   <input type="hidden" name="user_id" value="<%=@user.id%>">
+  <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%> value=" <%="#{@time[0]} at #{@time[1]}"%>">
   <input type="submit" value="post">
 </form>
 <br>
@@ -16,10 +17,14 @@
 <%end%>
 <%counter = 0%>
 <%while counter < 7%>
+<%if @posts[counter] != nil%>
 <h3><%=@posts[counter].post_body%></h3>
-<h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %> </h6>
+<h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
 <%counter += 1%>
 <br>
+<%else%>
+<%counter += 1%>
+<%end%>
 <%end%>
 </div>
 
