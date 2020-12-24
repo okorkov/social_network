@@ -39,14 +39,24 @@
 </section>
 
 <section class="posts">
-<p style="text-align:center">Posts:</p>
+<p style="text-align:left">Create New Post:</p>
+<form action='/posts' method='post'>
+  <input type="text" name="post_body" size="50" required>
+  <input type="hidden" name="user_id" value="<%=@user.id%>">
+  <input type="submit" value="post">
+</form>
+<br>
+<h3>Old Posts:</h3>
+<h3>__________________________________________</h3>
 <br>
 <%if @posts.size == 0%>
 <p style="text-align:center"><%="You have no posts yet."%></p>
 <%end%>
-<%@posts.each do |post|%>
-<h3><%=post.post_body%></h3>
-<h6>posted by: <%=User.find(post.user_id).username%> on <%=post.when_posted %></h6>
+<%counter = 0%>
+<%while counter < 7%>
+<h3><%=@posts[counter].post_body%></h3>
+<h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
+<%counter += 1%>
 <br>
 <%end%>
 </section>
