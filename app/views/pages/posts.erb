@@ -29,11 +29,16 @@
   <%end%>
     <form action="/posts/<%=@user.id%>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete" >
-    <h2 style="color:coral;"><button onclick="myFunction()" value='DELETE'>Delete all of your posts</button></h2>
+    <h2 style="color:coral;"><button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete all of your posts</button></h2>
       <script>
-        function myFunction() {
-          confirm("Are you sure you want to delete all of your posts?");
-        }
-      </script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you want to delete?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>    
    </form>              
 </div>

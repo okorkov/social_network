@@ -1,12 +1,11 @@
 <link rel="stylesheet" href="/stylesheets/posts.css" />
 
 <div class="posts">
-  <p>Create New Post:</p>
-  <form action='/posts_page' method='post'>
-    <input type="text" name="post_body" size="50" required>
-    <input type="hidden" name="user_id" value="<%=@user.id%>">
-    <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%>
-      value=" <%="#{@time[0]} at #{@time[1]}"%>">
-    <input type="submit" value="post">
+  <p>Edit Post of <%=@user.first_name%> <%=@user.last_name%>:</p>
+  <form action="/posts/<%=@post.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type='text' name='post_body' value='<%=@post.post_body%>'>
+    <input type="submit" value="save">
   </form>
-  </div>
+</div>
+

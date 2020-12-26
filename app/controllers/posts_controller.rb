@@ -35,5 +35,11 @@ class PostsController < ApplicationController
       redirect "/error/post with this id doesn't exists"
     end
   end
+  patch '/posts/:id' do
+    @post = Post.find_by(id: params[:id])
+    @post.post_body = "#{params[:post_body]} -(edited)"
+    @post.save
+    redirect '/posts'
+  end
 
 end
