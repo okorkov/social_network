@@ -1,0 +1,50 @@
+.friends_search_bar {
+  position: absolute;
+  left: 50px;
+  top: 130px;
+  font-family: Georgia;
+  text-align: center;
+  line-height: 18px;
+  font-size: 16px;
+  width: 88%;
+  margin: 0px;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+}
+
+input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 7px 15px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 3px;
+  width: 40%;
+  border: 1px solid #f6f6f6;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+input[type=button], input[type=submit], button[value='DELETE'] {
+  background-color: #af6654;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 16px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+}

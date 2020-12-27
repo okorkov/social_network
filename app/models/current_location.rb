@@ -29,6 +29,3 @@ class CurrentLocation
   end
     
 end
-
-# ip address geo info - https://ipinfo.io/67.180.76.50/geo
-# find out your ip address - https://api.ipify.org/?format=json

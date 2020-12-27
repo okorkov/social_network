@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/stylesheets/friends_search.css" />
+
+<section class="results">
+  <%if @all_matches.size != 0 && @all_matches[0] != nil%> 
+    <%@all_matches.each do |user|%>
+     <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br></a>
+    <%end%>
+  <%else%>
+    <h3>No users found</h3><br><br>
+    <a href='/friends'><h3>please try again</h3></a>
+  <%end%>
+
+</section>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
   has_many :posts
-  belongs_to :friend
+  has_many :friends
   has_secure_password
 end

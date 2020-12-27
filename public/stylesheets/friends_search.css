@@ -1,0 +1,11 @@
+.results {
+  position: absolute;
+  left: 80px;
+  top: 160px;
+  font-family: Georgia;
+  text-align: center;
+  line-height: 18px;
+  font-size: 28px;
+  width: 88%;
+  margin: 0px;
+}
