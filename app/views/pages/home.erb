@@ -38,6 +38,7 @@
 </section>
 
 <section class="posts">
+   <%if @user.id == session[:user_id]%>
   <p style="text-align:left">Create New Post:</p>
   <form action='/posts' method='post'>
     <input type="text" name="post_body" size="50" required>
@@ -46,6 +47,7 @@
       value=" <%="#{@time[0]} at #{@time[1]}"%>">
     <input type="submit" value="post">
   </form>
+  <%end%>
   <h3>Old Posts:</h3>
   <h3>__________________________________________</h3>
   <br>

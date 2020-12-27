@@ -8,3 +8,17 @@
   <br>
   </section>
 
+<section class="friends">
+<h1>Your Friends:</h1><br><br>
+  <%if @friends.size > 0 %>
+    <%@friends.flatten.each do |user|%>
+      <%if user != nil%>
+          <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br><br></a>
+      <%end%>
+    <%end%>
+  <%else%>
+    <h3>You don't have any friends added yet, try to serach people you know and add them to your friend list</h3>
+  <%end%>
+<h1>Pending Friend Requests:</h1><br><br>
+</section>
+

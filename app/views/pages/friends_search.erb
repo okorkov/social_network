@@ -1,9 +1,18 @@
 <link rel="stylesheet" href="/stylesheets/friends_search.css" />
+<link rel="stylesheet" href="/stylesheets/friends.css" />
+
+<section class="friends_search_bar">
+<form action='/friends/search' method='get'>
+    <input type="text" name="name" size="50" placeholder="search for users" required>
+    <input type="submit" value="search">
+  </form>
+  <br>
+  </section>
 
 <section class="results">
-  <%if @all_matches.size != 0 && @all_matches[0] != nil%> 
+ <%if @all_matches.size != 0 && @all_matches[0] != nil %> 
     <%@all_matches.each do |user|%>
-     <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br></a>
+      <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br><br></a>
     <%end%>
   <%else%>
     <h3>No users found</h3><br><br>

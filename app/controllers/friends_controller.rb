@@ -4,20 +4,29 @@ class FriendsController < ApplicationController
     if self.logged_in?
       @user = self.current_user
       @all_users = User.all
-      @all_friends = Friend.all
+      @friendship = []
+      Friend.where(sender_id: @user.id, status: "friends").each {|friend| @friendship << friend}
+      Friend.where(receiver_id: @user.id, status: "friends").each {|friend| @friendship << friend}
+      @friends_id = []
+      @friendship.each do |friend| 
+        @friends_id << friend.sender_id
+        @friends_id << friend.receiver_id
+      end
+      @friends = @friends_id.map {|id| User.where(id: id) if id != @user.id}
+      
       erb :"/pages/friends", :layout => :"/layout/layout"
     else
       redirect "/error/you're currently not logged in"
     end
   end
-
+  
   get '/friends/search' do
     @user = self.current_user 
     if params.size > 0
-      @all_matches = []
-      @first_name = @all_matches << User.find_by(first_name: params[:name].split.first.downcase.capitalize)
-      @last_name = @all_matches << User.find_by(last_name: params[:name].split.last.downcase.capitalize)
-      @all_matches.uniq!
+      @matches = []
+      @matches << User.where(first_name: params[:name].split.first.downcase.capitalize)
+      @matches << User.where(last_name: params[:name].split.last.downcase.capitalize) 
+      @all_matches = @matches.flatten.uniq
     else 
       redirect '/friends'
     end
@@ -25,3 +34,4 @@ class FriendsController < ApplicationController
   end
   
 end
+
