@@ -22,11 +22,12 @@
       <label for="other"> other</label>
     </h2>
      <br>
-    <h2>Old Password <input type='text' name="old_password" size="16"> New Password <input type='text' name="new_password" size="16"></h2>
+    <h2>Old Password <input type='password' name="old_password" size="16" id="myInput"> New Password <input type='password' name="new_password" size="16" id="myInput"></h2>
+    <p style="text-align:center"><input type="checkbox" onclick="myFunction()">Show Password</p>
     <br>
     <h2>Save Changes   <input type="submit" value='Update'></h2>
 </form> 
-<br><br><br>
+<br><br>
   <form action="/profile" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete" >
     <h2 style="color:coral;">DELETE ACCOUNT <button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>DELETE</button></h2>
@@ -38,6 +39,14 @@
           return true;
       else
         return false;
+    }
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+       x.type = "password";
+      }
     }
 </script>  
    </form>                                    

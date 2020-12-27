@@ -27,8 +27,9 @@
      <%counter += 1%>
    <%end%>
   <%end%>
-    <form action="/posts/<%=@user.id%>" method="post">
+    <form action="/posts" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete" >
+    <input id="hidden" type="hidden" name="id" value="<%=@user.id%>">
     <h2 style="color:coral;"><button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete all of your posts</button></h2>
       <script>
     function ConfirmDelete()

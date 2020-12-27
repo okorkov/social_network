@@ -16,9 +16,15 @@ class PostsController < ApplicationController
     redirect '/posts'
   end
 
-  delete '/posts/:id' do
+  delete '/posts' do
     @posts = Post.where(user_id: params[:id])
     @posts.each {|post| post.destroy}
+    redirect '/posts'
+  end
+
+  delete '/posts/:id' do
+    @post = Post.find(params[:id])
+    @post.destroy
     redirect '/posts'
   end
 
