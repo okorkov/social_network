@@ -57,8 +57,12 @@ class FriendsController < ApplicationController
   end
 
   post '/friends/delete_request' do
-    @friendship_request = Friend.where(params).first.destroy
-    redirect "/profile/#{params[:receiver_id]}"
+    @request_one = Friend.where(sender_id: params[:sender_id], receiver_id: params[:receiver_id]).first
+    @request_two = Friend.where(sender_id: params[:receiver_id], receiver_id: params[:sender_id]).first
+    @request_one.destroy if !@request_one.nil?
+    @request_two.destroy if !@request_two.nil?
+    redirect "/profile/#{params[:receiver_id]}" if !@request_one.nil?
+    redirect "/profile/#{params[:sender_id]}" if !@request_two.nil?
   end
 
 end

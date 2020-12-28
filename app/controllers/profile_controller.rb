@@ -13,10 +13,13 @@ class ProfileController < ApplicationController
       @user = User.find(id)
       @location = CurrentLocation.location_info
       @posts = Post.where(user_id: id).reverse
+
       @id_params = {user_page: @user.id, user_session: User.find(session[:user_id]).id}
       @outgoing_friendships = Friend.where(sender_id: @id_params[:user_session], receiver_id: @id_params[:user_page], status: 'pending').first
       @incoming_friendships = Friend.where(sender_id: @id_params[:user_page], receiver_id: @id_params[:user_session], status: 'pending').first
       
+      @friends_check_one = Friend.where(sender_id: @id_params[:user_session], receiver_id: @id_params[:user_page], status: 'friends').first
+      @friends_check_two = Friend.where(sender_id: @id_params[:user_page], receiver_id: @id_params[:user_session], status: 'friends').first
 
       erb :"/pages/home", :layout => :"/layout/layout"
     else
@@ -37,11 +40,11 @@ class ProfileController < ApplicationController
         @user.gender = params[:gender]
         @user.save
         redirect "/home"
-     when params[:new_password] == "" && params[:old_password] != ""
+      when params[:new_password] == "" && params[:old_password] != ""
         redirect "error/you didn't put a new password"
       when params[:new_password] != "" && params[:old_password] == ""
         redirect "error/you didn't put an old password"
-     when params[:new_password] != "" && params[:old_password] != ""
+      when params[:new_password] != "" && params[:old_password] != ""
         if @user.authenticate(params[:old_password])
           @user.username = params[:username]
           @user.first_name = params[:first_name]
