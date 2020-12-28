@@ -18,8 +18,8 @@ body {
 .branding {
   position: absolute;
   z-index: 4;
-  bottom: 3%;
-  right: 43%;
+  bottom: 3px;
+  right: 600px;
   text-align: center;
   font-family: Georgia;
   line-height: 18px;

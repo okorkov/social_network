@@ -17,8 +17,17 @@
       <%end%>
     <%end%>
   <%else%>
-    <h3>You don't have any friends added yet, try to serach people you know and add them to your friend list</h3>
+    <h3>You don't have any friends added yet, try to serach people you know and add them to your friend list</h3><br><br>
   <%end%>
 <h1>Pending Friend Requests:</h1><br><br>
+<%if @friends_requests.size > 0 %>
+    <%@friends_requests.flatten.each do |user_request|%>
+      <%if user_request != nil%>
+          <a href="../profile/<%=user_request.id%>"><p> <%="#{user_request.first_name} #{user_request.last_name}"%> </p><br><br></a>
+      <%end%>
+    <%end%>
+  <%else%>
+    <h3>You don't have any pending friend requests</h3>
+  <%end%>
 </section>
 

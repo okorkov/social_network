@@ -1,6 +1,7 @@
 class FriendsController < ApplicationController
   
   get '/friends' do
+    #current friends
     if self.logged_in?
       @user = self.current_user
       @all_users = User.all
@@ -13,7 +14,17 @@ class FriendsController < ApplicationController
         @friends_id << friend.receiver_id
       end
       @friends = @friends_id.map {|id| User.where(id: id) if id != @user.id}
-      
+    #pending_friend_requests
+    @friendship_request = []
+    Friend.where(sender_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
+    Friend.where(receiver_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
+    @friends_id_request = []
+    @friendship_request.each do |friend| 
+      @friends_id_request << friend.sender_id
+      @friends_id_request << friend.receiver_id
+    end
+    @friends_requests = @friends_id_request.map {|id| User.where(id: id) if id != @user.id}
+
       erb :"/pages/friends", :layout => :"/layout/layout"
     else
       redirect "/error/you're currently not logged in"
@@ -32,6 +43,23 @@ class FriendsController < ApplicationController
     end
     erb :"/pages/friends_search", :layout => :"/layout/layout"
   end
-  
+
+  post '/friends/request' do
+    Friend.create(params)
+    redirect "/profile/#{params[:receiver_id]}"
+  end
+
+  post '/friends/accept' do
+    @pending_friendship = Friend.where(params).first
+    @pending_friendship[:status] = 'friends'
+    @pending_friendship.save
+    redirect "/profile/#{params[:sender_id]}"
+  end
+
+  post '/friends/delete_request' do
+    @friendship_request = Friend.where(params).first.destroy
+    redirect "/profile/#{params[:receiver_id]}"
+  end
+
 end
 

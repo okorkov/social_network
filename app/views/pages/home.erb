@@ -2,8 +2,8 @@
 
 <section class="home">
   <%if @user.id == session[:user_id]%>
-  <h3 style="text-align:center">(you)<h3>
-      <%end%>
+  <h3 style="text-align:center">(you)</h3>
+  <%end%>
       <%if File.exists?("public/images/profile/#{@user.id}") %>
       <%pic = Dir["public/images/profile/#{@user.id}/*"].collect {|file| file}%>
       <%link = pic[0].split('/').drop(1).join('/')%>
@@ -66,3 +66,37 @@
   <%end%>
   <%end%>
 </section>
+
+
+  <%if @user.id != session[:user_id]%>
+
+    <%if !@outgoing_friendships.nil? && @incoming_friendships.nil?%>
+      <section class="friend_button"><p>-(pending friend request)-</p>
+          <form action='/friends/delete_request' method="post">
+          <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+          <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+          <input type="hidden" name="status" value="pending">
+          <input type="submit" value="Cancel Request"/>
+        </form>
+      </section>
+    <%elsif @outgoing_friendships.nil? && !@incoming_friendships.nil?%>
+      <section class="friend_button">
+        <form action='/friends/accept' method="post">
+          <input type="hidden" name="receiver_id" value="<%=self.current_user.id %>">
+          <input type="hidden" name="sender_id" value="<%=@user.id%>">
+          <input type="hidden" name="status" value="pending">
+          <input type="submit" value="Accept Friend Request"/>
+        </form>
+      </section>
+    <%else%>
+      <section class="friend_button">
+        <form action='/friends/request' method="post">
+          <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+          <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+          <input type="hidden" name="status" value="pending">
+          <input type="submit" value="Request Friendship">
+        </form>
+      </section>
+    <%end%>
+  <%end%>
+

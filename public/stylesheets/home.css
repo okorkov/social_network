@@ -59,3 +59,8 @@ input[type=button], input[type=submit], button[value='DELETE'] {
   margin: 5px 20px 40px 20px;
 }
 
+.friend_button {
+  position: relative;
+  left: 350px;
+  top: 200px;
+}

@@ -13,6 +13,11 @@ class ProfileController < ApplicationController
       @user = User.find(id)
       @location = CurrentLocation.location_info
       @posts = Post.where(user_id: id).reverse
+      @id_params = {user_page: @user.id, user_session: User.find(session[:user_id]).id}
+      @outgoing_friendships = Friend.where(sender_id: @id_params[:user_session], receiver_id: @id_params[:user_page], status: 'pending').first
+      @incoming_friendships = Friend.where(sender_id: @id_params[:user_page], receiver_id: @id_params[:user_session], status: 'pending').first
+      
+
       erb :"/pages/home", :layout => :"/layout/layout"
     else
       redirect '/error/there is no user with this id'

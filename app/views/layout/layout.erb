@@ -26,7 +26,7 @@
   </div>
 </section>
     <h3 style="position:absolute; right:30px;" id='logout'><a href='/logout'>log out</a> </h3> 
-    <h3 style="position:absolute; right:400px;" id='logout_username'>Account (username): <%=@user.username %><h3>
+    <h3 style="position:absolute; right:400px;" id='logout_username'>Account (username): <%=self.current_user.username %><h3>
   <%= yield %>
   
 
