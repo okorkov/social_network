@@ -21,7 +21,7 @@ input[type=text], input[type=password] {
 }
 
 input[type=button], input[type=submit], button[value='DELETE'] {
-  background-color: #af6654;
+  background-color: #b1462b;
   border: none;
   color: white;
   padding: 5px 15px;

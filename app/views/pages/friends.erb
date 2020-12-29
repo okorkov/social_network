@@ -7,7 +7,7 @@
   </form><br>
 </section>
 
-<section class="friends">
+<div class="friends">
   <h1>Your Friends:</h1><br><br>
     <%if @friends.size > 0 %>
       <%@friends.flatten.each do |user|%>
@@ -28,5 +28,5 @@
   <%else%>
     <h3>You don't have any pending friend requests</h3>
   <%end%>
-</section>
+</div>
 

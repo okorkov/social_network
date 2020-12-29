@@ -5,8 +5,8 @@
   <form action="/profile/<%=@user.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <h2>User Name: <input type='text' name="username" value="<%=@user.username%>" size="16"></h2><br>
-    <h2>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h2> <br>
-    <h2>Email Address <input type='text' name="email" value="<%=@user.email%>" size="25"></h2> <br>
+    <h2>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name: <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h2> <br>
+    <h2>Email Address: <input type='text' name="email" value="<%=@user.email%>" size="25"></h2> <br>
     <h2>Date of Birth: <input type='date' name="dob" value="<%=@user.dob%>" ></h2><br>
     <h2>Gender: 
       <input type="radio" id="male" name="gender" value="male" <%='checked' if @user.gender.include?("male") %>>
