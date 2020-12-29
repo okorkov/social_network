@@ -27,7 +27,6 @@ class ProfileController < ApplicationController
     end
   end
 
-
   patch '/profile/:id' do
     @user = self.current_user
     case

@@ -1,40 +1,34 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+  <head>
+    <title>SocialNetwork</title>
+    <link rel="stylesheet" href="/stylesheets/layout.css" />
+  </head>
 
+  <body>
+    <h1 id="social-network">SocialNetwork</h1>
+    <section id="navigation">
+      <div class="links">
+        <h3><a href="/home">HOME</a></h3>
+      </div>
+      <div class="links">
+        <h3><a href="/friends">FRIENDS</a></h3>
+      </div>
+      <div class="links">
+        <h3><a href="/posts">POSTS</a></h3>
+      </div>
+      <div class="links">
+        <h3><a href="/profile">PROFILE</a></h3>
+      </div>
+    </section>
 
-<head>
-  <title>SocialNetwork</title>
-  <link rel="stylesheet" href="/stylesheets/layout.css" />
-</head>
+      <h3 style="position:absolute; right:30px;" id='logout'><a href='/logout'>log out</a> </h3> 
+      <h3 style="position:absolute; right:400px;" id='logout_username'>Account (username): <%=self.current_user.username %><h3>
 
-<body>
-
-<h1 id="social-network">SocialNetwork</h1>
-
-<section id="navigation">
-  <div class="links">
-    <h3><a href="/home">HOME</a></h3>
-  </div>
-  <div class="links">
-    <h3><a href="/friends">FRIENDS</a></h3>
-  </div>
-  <div class="links">
-    <h3><a href="/posts">POSTS</a></h3>
-  </div>
-   <div class="links">
-    <h3><a href="/profile">PROFILE</a></h3>
-  </div>
-</section>
-    <h3 style="position:absolute; right:30px;" id='logout'><a href='/logout'>log out</a> </h3> 
-    <h3 style="position:absolute; right:400px;" id='logout_username'>Account (username): <%=self.current_user.username %><h3>
-  <%= yield %>
-  
-
-  <footer class="branding">
-    <a href="https://github.com/okorkov/social_network" target="_blank" <p>&copy; 2020 <strong>SocialNetwork</strong></p>
-  </footer>
-  </div>
-
-</body>
-
+      <%= yield %>
+      
+    <footer class="branding">
+        <a href="https://github.com/okorkov/social_network" target="_blank" <p>&copy; 2020 <strong>SocialNetwork</strong></p>
+    </footer>
+  </body>
 </html>

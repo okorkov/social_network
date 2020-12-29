@@ -27,5 +27,5 @@ class CurrentLocation
     doc = JSON.parse(response.body)
     doc
   end
-    
+  
 end

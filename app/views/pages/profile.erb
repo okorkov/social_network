@@ -1,18 +1,13 @@
 <link rel="stylesheet" href="/stylesheets/profile.css" />
 
 <section class="profile">
-  <h1>REVIEW OR EDIT YOUR PROFILE</h1>
-  <br>
+  <h1>REVIEW OR EDIT YOUR PROFILE</h1> <br>
   <form action="/profile/<%=@user.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <h2>User Name: <input type='text' name="username" value="<%=@user.username%>" size="16"></h2>
-    <br>
-    <h2>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h2>
-    <br>
-    <h2>Email Address <input type='text' name="email" value="<%=@user.email%>" size="25"></h2>
-    <br>
-    <h2>Date of Birth: <input type='date' name="dob" value="<%=@user.dob%>" ></h2>
-    <br>
+    <h2>User Name: <input type='text' name="username" value="<%=@user.username%>" size="16"></h2><br>
+    <h2>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h2> <br>
+    <h2>Email Address <input type='text' name="email" value="<%=@user.email%>" size="25"></h2> <br>
+    <h2>Date of Birth: <input type='date' name="dob" value="<%=@user.dob%>" ></h2><br>
     <h2>Gender: 
       <input type="radio" id="male" name="gender" value="male" <%='checked' if @user.gender.include?("male") %>>
       <label for="male"> male</label>
@@ -20,36 +15,33 @@
       <label for="female"> female</label>
       <input type="radio" id="other" name="gender" value="other" <%='checked' if @user.gender.include?("other") %>>
       <label for="other"> other</label>
-    </h2>
-     <br>
+    </h2><br>
     <h2>Old Password <input type='password' name="old_password" size="16" id="myInput"> New Password <input type='password' name="new_password" size="16" id="myInput"></h2>
-    <p style="text-align:center"><input type="checkbox" onclick="myFunction()">Show Password</p>
-    <br>
+    <p style="text-align:center"><input type="checkbox" onclick="myFunction()">Show Password</p><br>
     <h2>Save Changes   <input type="submit" value='Update'></h2>
-</form> 
-<br><br>
+  </form> <br><br>
+
   <form action="/profile" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete" >
     <h2 style="color:coral;">DELETE ACCOUNT <button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>DELETE</button></h2>
-<script>
-    function ConfirmDelete()
-    {
-      var x = confirm("Are you sure you want to delete your account? It'll be gone for good");
-      if (x)
-          return true;
-      else
-        return false;
-    }
-    function myFunction() {
-      var x = document.getElementById("myInput");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-       x.type = "password";
-      }
-    }
-</script>  
-   </form>                                    
+      <script>
+        function ConfirmDelete() {
+          var x = confirm("Are you sure you want to delete your account? It'll be gone for good");
+          if (x)
+            return true;
+          else
+            return false;
+        }
+        function myFunction() {
+          var x = document.getElementById("myInput");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+      </script>  
+  </form>                                    
 </section>
 
 

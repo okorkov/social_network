@@ -33,7 +33,6 @@ class PostsController < ApplicationController
   end
 
   get '/posts/:id/edit' do
-    
     if Post.find_by(id: params[:id]) != nil
       if self.logged_in?
         @user = self.current_user
@@ -46,10 +45,9 @@ class PostsController < ApplicationController
       else
         redirect "/error/post with this id doesn't exists"
       end
-      else
+    else
         redirect "/error/you're currently not logged in"
-      end
-
+    end
   end
 
   patch '/posts/:id' do

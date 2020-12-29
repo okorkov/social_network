@@ -14,16 +14,16 @@ class FriendsController < ApplicationController
         @friends_id << friend.receiver_id
       end
       @friends = @friends_id.map {|id| User.where(id: id) if id != @user.id}
-    #pending_friend_requests
-    @friendship_request = []
-    Friend.where(sender_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
-    Friend.where(receiver_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
-    @friends_id_request = []
-    @friendship_request.each do |friend| 
-      @friends_id_request << friend.sender_id
-      @friends_id_request << friend.receiver_id
-    end
-    @friends_requests = @friends_id_request.map {|id| User.where(id: id) if id != @user.id}
+     #pending_friend_requests
+      @friendship_request = []
+      Friend.where(sender_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
+      Friend.where(receiver_id: @user.id, status: "pending").each {|friend| @friendship_request << friend}
+      @friends_id_request = []
+      @friendship_request.each do |friend| 
+        @friends_id_request << friend.sender_id
+        @friends_id_request << friend.receiver_id
+      end
+      @friends_requests = @friends_id_request.map {|id| User.where(id: id) if id != @user.id}
 
       erb :"/pages/friends", :layout => :"/layout/layout"
     else

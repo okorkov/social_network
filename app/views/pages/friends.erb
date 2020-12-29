@@ -1,26 +1,25 @@
 <link rel="stylesheet" href="/stylesheets/friends.css" />
 
 <section class="friends_search_bar">
-<form action='/friends/search' method='get'>
+  <form action='/friends/search' method='get'>
     <input type="text" name="name" size="50" placeholder="search for users" required>
     <input type="submit" value="search">
-  </form>
-  <br>
-  </section>
+  </form><br>
+</section>
 
 <section class="friends">
-<h1>Your Friends:</h1><br><br>
-  <%if @friends.size > 0 %>
-    <%@friends.flatten.each do |user|%>
-      <%if user != nil%>
+  <h1>Your Friends:</h1><br><br>
+    <%if @friends.size > 0 %>
+      <%@friends.flatten.each do |user|%>
+        <%if user != nil%>
           <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br><br></a>
+        <%end%>
       <%end%>
+    <%else%>
+      <h3>You don't have any friends added yet, try to serach people you know and add them to your friend list</h3><br><br>
     <%end%>
-  <%else%>
-    <h3>You don't have any friends added yet, try to serach people you know and add them to your friend list</h3><br><br>
-  <%end%>
-<h1>Pending Friend Requests:</h1><br><br>
-<%if @friends_requests.size > 0 %>
+  <h1>Pending Friend Requests:</h1><br><br>
+  <%if @friends_requests.size > 0 %>
     <%@friends_requests.flatten.each do |user_request|%>
       <%if user_request != nil%>
           <a href="../profile/<%=user_request.id%>"><p> <%="#{user_request.first_name} #{user_request.last_name}"%> </p><br><br></a>

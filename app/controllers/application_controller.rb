@@ -34,15 +34,15 @@ class ApplicationController < Sinatra::Base
     params[:first_name] = params[:first_name].downcase.capitalize
     params[:last_name] = params[:last_name].downcase.capitalize
     params[:email] = params[:email].downcase
-      @user = User.new(params)
-        if @user.save
-          user = User.find_by(:username => params[:username])
-          user.authenticate(params[:password])
-          session[:user_id] = user.id
-          redirect "/home"
-        else
-          redirect "/error/we weren't able to register you"
-        end
+    @user = User.new(params)
+    if @user.save
+      user = User.find_by(:username => params[:username])
+      user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/home"
+    else
+      redirect "/error/we weren't able to register you"
+    end
   end
 
   post '/pic' do
