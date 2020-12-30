@@ -1,7 +1,9 @@
 class FriendsController < ApplicationController
   
   get '/friends' do
-  
+    @user = self.current_user 
+    @friends = @user.friends
+    @pending_friendship = @user.pending_friendship
     erb :"/pages/friends", :layout => :"/layout/layout"
   end
 
