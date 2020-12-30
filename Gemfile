@@ -15,7 +15,6 @@ gem 'json'
 gem 'uri'
 gem 'openssl'
 gem 'net-http'
-gem 'down'
 
 group :development do
   gem 'pry'

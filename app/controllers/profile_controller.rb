@@ -11,15 +11,9 @@ class ProfileController < ApplicationController
     id = params[:id]
     if User.find_by(id: id)
       @user = User.find(id)
+      @self = self.current_user
       @location = CurrentLocation.location_info
       @posts = Post.where(user_id: id).reverse
-
-      @id_params = {user_page: @user.id, user_session: User.find(session[:user_id]).id}
-      @outgoing_friendships = Friend.where(sender_id: @id_params[:user_session], receiver_id: @id_params[:user_page], status: 'pending').first
-      @incoming_friendships = Friend.where(sender_id: @id_params[:user_page], receiver_id: @id_params[:user_session], status: 'pending').first
-      
-      @friends_check_one = Friend.where(sender_id: @id_params[:user_session], receiver_id: @id_params[:user_page], status: 'friends').first
-      @friends_check_two = Friend.where(sender_id: @id_params[:user_page], receiver_id: @id_params[:user_session], status: 'friends').first
 
       erb :"/pages/home", :layout => :"/layout/layout"
     else

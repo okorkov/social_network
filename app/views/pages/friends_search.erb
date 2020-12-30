@@ -11,7 +11,12 @@
 <section class="results">
   <%if @all_matches.size != 0 && @all_matches[0] != nil %> 
     <%@all_matches.each do |user|%>
-      <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> </p><br><br></a>
+      <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> 
+      <%if user.avatar != nil%> 
+        <img src="<%=user.avatar%>" width="30" height="30" style="border: 3px solid rgb(143, 18, 18);">
+      <%else%>
+        <img src="/images/profile_default.png" width="30" height="30" style="border: 3px solid rgb(143, 18, 18);">
+      <%end%></p><br><br></a>
     <%end%>
   <%else%>
     <h3>No users found</h3><br><br>

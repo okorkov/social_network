@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201229185358) do
+ActiveRecord::Schema.define(version: 20201230011407) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
-    t.string  "status"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(version: 20201229185358) do
     t.string "last_name"
     t.string "gender"
     t.string "dob"
+    t.string "avatar"
   end
 
 end
