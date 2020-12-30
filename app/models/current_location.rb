@@ -28,6 +28,8 @@ class CurrentLocation
     doc
   end
 
+  private
+  
   def self.seed_user
     ip_address = self.ip_getter
     url = URI("https://randomuser.me/api/")

@@ -9,11 +9,11 @@
     <input type="submit" value="post">
   </form> <br>
 
-  <h3>Old Posts:</h3>
+  <h3>Posts:</h3>
   <h3>____________________________________________________________________________________________</h3><br>
   
   <%if @posts.size == 0%>
-    <p style="text-align:center"><%="You have no posts yet."%></p>
+    <p style="text-align:center">You have no posts yet.</p>
   <%end%>
   <%counter = 0%>
   <%while counter < 7%>
