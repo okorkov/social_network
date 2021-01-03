@@ -43,10 +43,10 @@ class PostsController < ApplicationController
           redirect "/error/not allowed to edit this post"
         end
       else
-        redirect "/error/post with this id doesn't exists"
+        redirect "/error/you're currently not logged in"
       end
     else
-        redirect "/error/you're currently not logged in"
+        redirect "/error/post with this id doesn't exists"
     end
   end
 
