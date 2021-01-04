@@ -58,5 +58,16 @@ class ProfileController < ApplicationController
     User.find_by(id: session[:user_id]).destroy
     redirect "/"
   end
+
+  #Write a custom route so that when a user visits /profiles/most-popular, the visitor sees the user with the most friends
+  #There are several ways to do it, so I'll leave it up to you to
+  #HINT Look up the max_by Ruby method to help you find the user with the most friends 
+
+  get '/profiles/most-popular' do
+    @users = User.all
+    @most_popular_user = @users.max_by {|user| user.friends.length}
+    redirect "/profile/#{@most_popular_user.id}"
+  end 
   
 end
+
