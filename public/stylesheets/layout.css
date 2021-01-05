@@ -9,7 +9,7 @@
 html, body{
   height: 100%;
   width: 100%;
-  background: linear-gradient(-45deg, #23a6d5, #ffed9b, #23a6d5);
+  background: linear-gradient(-45deg, #f3f3f3, #8cd6db,  #f3f3f3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +51,7 @@ div, #logout {
   float: left;
   width: 25%;
   text-align: center;
-  background-color: rgb(255, 229, 113);
+  background-color: rgb(248, 230, 182);
   border-top: 5px solid rgb(83, 11, 11);
   -webkit-border-radius: 30px 5px 30px 5px; 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -59,7 +59,7 @@ div, #logout {
 
 div a:hover {
   background-color:rgb(3, 2, 71);
-  color:rgb(255, 229, 113);
+  color:rgb(248, 230, 182);
   cursor:pointer;
 }
 

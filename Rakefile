@@ -8,38 +8,6 @@ task :console do
   Pry.start
 end
 
-task :add_user do
-  random_user = CurrentLocation.seed_user
-  hash = { 
-    gender: random_user['results'][0]['gender'],
-    first_name: random_user['results'][0]['name']['first'],
-    last_name: random_user['results'][0]['name']['last'],
-    email: random_user['results'][0]['email'],
-    username: random_user['results'][0]['login']['username'],
-    password: random_user['results'][0]['login']['password'],
-    dob: random_user['results'][0]['dob']['date'].split('T')[0]
-   }
-   User.create(hash)
-end
-
-task :add_10_users do
-  counter = 1
-  while counter <= 10
-    random_user = CurrentLocation.seed_user
-    hash = { 
-    gender: random_user['results'][0]['gender'],
-    first_name: random_user['results'][0]['name']['first'],
-    last_name: random_user['results'][0]['name']['last'],
-    email: random_user['results'][0]['email'],
-    username: random_user['results'][0]['login']['username'],
-    password: random_user['results'][0]['login']['password'],
-    dob: random_user['results'][0]['dob']['date'].split('T')[0]
-    }
-    User.create(hash)
-    counter += 1
-  end
-end
-
 task :add_50_users do
   counter = 1
   while counter <= 50
@@ -51,9 +19,28 @@ task :add_50_users do
     email: random_user['results'][0]['email'],
     username: random_user['results'][0]['login']['username'],
     password: random_user['results'][0]['login']['password'],
-    dob: random_user['results'][0]['dob']['date'].split('T')[0]
+    dob: random_user['results'][0]['dob']['date'].split('T')[0],
+    avatar: random_user['results'][0]['picture']['large']
     }
     User.create(hash)
     counter += 1
   end
 end
+
+
+task :random_post do
+  counter = 1
+  while counter < 1000
+    random_user_id = rand(575..1000)
+    random_post = CurrentLocation.random_post['phrase']
+    hash = { 
+      post_body: random_post,
+      user_id: random_user_id,
+      when_posted: Time.now
+     }
+    Post.create(hash)
+  end
+end
+
+
+

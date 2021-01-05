@@ -41,5 +41,17 @@ class CurrentLocation
     doc = JSON.parse(response.body)
     doc
   end
+
+  def self.random_post
+    ip_address = self.ip_getter
+    url = URI("https://corporatebs-generator.sameerkumar.website/")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    response = http.request(request)
+    doc = JSON.parse(response.body)
+    doc
+  end
   
 end
