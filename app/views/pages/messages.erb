@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/stylesheets/messages.css" />
+
+<div class="posts">
+  <%if @chat.length > 0%>
+    <%@chat.each do |message|%>
+      <%if true%>
+        <%@sent_from = User.find(message.sender_id)%>
+        <p><%="#{@sent_from.first_name}: #{message.message}"%></p><br>
+      <%end%>
+    <%end%>
+  <%else%>
+    <h3>No Messages Yet</h3>
+  <%end%>
+    <form action='/message/new' method='post'>
+    <input type="text" name="message" size="30" placeholder="new message" required>
+    <input type="hidden" name="sender_id" value="<%=@self.id%>">
+    <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+    <input type="hidden" name="when_posted" value="<%=Time.now%>">
+    <input type="submit" value="send">
+  </form>
+</div>
+
+<div class="user_display">
+  <img src="<%=@user.avatar%>" width="200" height="150" style="border: 3px solid rgb(143, 18, 18);">
+  <a href="/profile/<%=@user.id%>" ><p><%="#{@user.first_name} #{@user.last_name}"%></p></a>
+</div>

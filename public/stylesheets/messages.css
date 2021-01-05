@@ -1,33 +1,34 @@
-.home {
-  position: absolute;
-  top: 140px;
-  left: 70px;
-  font-family: Georgia;
-  line-height: 18px;
-  font-size: 26px;
-  background-color: rgb(248, 230, 182);
-  width: 550px;
-  border-radius: 50px;
-  padding: 30px;
-  margin: 0px;
-  -webkit-border-radius: 40px 40px 40px 40px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-
 .posts {
   position: absolute;
-  right: 70px;
-  top: 140px;
+  left: 50px;
+  top: 150px;
   font-family: Georgia;
   line-height: 18px;
   font-size: 16px;
+  text-align: left;
   background-color: rgb(191, 240, 247);
-  width: 550px;
+  width: 88%;
   border-radius: 50px;
   padding: 30px;
   margin: 0px;
   -webkit-border-radius: 40px 40px 40px 40px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding-bottom: 100px;
+}
+
+.user_display {
+  position: absolute;
+  right: 150px;
+  top: 150px;
+}
+
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
 }
 
 input[type=text] {
@@ -47,29 +48,16 @@ input[type=text] {
 }
 
 input[type=button], input[type=submit], button[value='DELETE'] {
-  background-color: #b1462b;
+  background-color:rgb(191, 240, 247);
   border: none;
-  color: white;
-  padding: 5px 15px;
-  text-align: center;
+  color: rgb(0, 0, 0);
+  padding: 5px 5px;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
-  font-size: 16px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
+  font-size: 8px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  /* border-radius: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px; */
 }
-
-.friend_button {
-  position: absolute;
-  left: 350px;
-  top: 200px;
-}
-
-.message {
-  position: absolute;
-  left: 670px;
-  top: 180px;
-}
-
