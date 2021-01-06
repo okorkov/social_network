@@ -8,7 +8,7 @@ class MessageController < ApplicationController
     else
       @new_message = Message.new(params)
       @new_message.when_posted = Time.now
-      @new_message.message = "*Chat is open now!*"
+      @new_message.message = "*opened chat with you*"
       @new_message.save
       redirect "/messages/#{@new_message.id}"
     end
