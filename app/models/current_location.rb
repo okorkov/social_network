@@ -44,7 +44,7 @@ class CurrentLocation
 
   def self.random_post
     ip_address = self.ip_getter
-    url = URI("https://corporatebs-generator.sameerkumar.website/")
+    url = URI("https://type.fit/api/quotes")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE

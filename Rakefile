@@ -29,16 +29,17 @@ end
 
 
 task :random_post do
+  random_post = CurrentLocation.random_post #  {"text"=>"We can only learn to love by loving.", "author"=>"Iris Murdoch"},
   counter = 1
-  while counter < 1000
-    random_user_id = rand(575..1000)
-    random_post = CurrentLocation.random_post['phrase']
+  while counter < random_post.length
+    random_user_id = rand(575..1000) #change
     hash = { 
-      post_body: random_post,
+      post_body: random_post[counter]["text"],
       user_id: random_user_id,
       when_posted: Time.now
      }
     Post.create(hash)
+    counter +=1
   end
 end
 
