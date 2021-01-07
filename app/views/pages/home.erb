@@ -1,113 +1,142 @@
-<link rel="stylesheet" href="/stylesheets/home.css" />
-
-<section class="home">
-  <%if @user.id == session[:user_id]%>
-    <h3 style="text-align:center">(you)</h3>
-  <%end%>
-  <%if !@user.avatar.nil? %>
-    <%link = @user.avatar%>
-    <img src="<%=link%>" width="200" height="150" style="border: 3px solid rgb(143, 18, 18);">
-  <%else%>
-    <img src="/images/profile_default.png" width="200" height="150" alt="Default profile picture" style="border: 3px solid rgb(143, 18, 18);">
-  <%end%>
-  <%if @user.id == session[:user_id]%>
-    <form action="/pic" method="post">
-      <input type="text" name="avatar" placeholder="URL" required>
-      <input type="submit" value="update profile image">
-    </form>
-  <%end%>
-  <h5>Name: <%=@user.first_name%> <%=@user.last_name%></h5><br><br>
-  <h5>Date of Birth: <%=@user.dob%></h5><br><br>
-  <h5>Gender: <%=@user.gender%></h5> <br><br>
-  <h5>Email:</h4><br>
-  <h5><%=@user.email%></h5><br><br>
-  <%if @user.id == session[:user_id]%>
-    <h5>Current Location:</h5><br>
-    <h5><%=@location['city']%>,</h5><br>
-    <h5><%=@location['region']%>, <%=@location['country']%></h5>
-  <%end%>
-</section>
-
-<section class="posts">
-  <%if @user.id == session[:user_id]%>
-    <p style="text-align:left">Create New Post:</p>
-    <form action='/posts' method='post'>
-      <input type="text" name="post_body" size="50" required>
-      <input type="hidden" name="user_id" value="<%=@user.id%>">
-      <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%> value=" <%="#{@time[0]} at #{@time[1]}"%>">
-      <input type="submit" value="post">
-    </form>
-  <%end%>
-  <h3>Posts:</h3>
-  <h3>______________________________________</h3>
-  <br>
-  <%if @posts.size == 0%>
-    <p style="text-align:center"><%="You have no posts yet."%></p>
-  <%end%>
-  <%counter = 0%>
-  <%while counter < 8%>
-    <%if @posts[counter] != nil%>
-      <h3><%=@posts[counter].post_body%></h3>
-      <h6>posted by: <%=User.find(@posts[counter].user_id).username%> on <%=@posts[counter].when_posted %></h6>
-      <%counter += 1%><br>
-    <%else%>
-      <%counter += 1%>
-    <%end%>
-  <%end%>
-</section>
-
-<section class="message">
-  <%if @user.id != session[:user_id]%>
-    <form action='/message' method='post'>
-    <input type="hidden" name="sender_id" value="<%=@self.id%>">
-    <input type="hidden" name="receiver_id" value="<%=@user.id%>">
-    <input type="submit" value="chat">
-    </form>
-  <%end%>
-</section>
-
-<%if @user.id != session[:user_id]%>
-  <%if @user.senders.include?(@self) && !@user.receivers.include?(@self)%>
-    <section class="friend_button">
-      <p>*(friendship requested)*</p>
-      <form action='/friends/delete_request' method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete" >
-        <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
-        <input type="hidden" name="receiver_id" value="<%=@user.id%>">
-        <input type="submit" value="cancel request">
-      </form>
-    </section>
-  <%end%>
-  <%if @user.receivers.include?(@self) && !@user.senders.include?(@self)%>
-    <section class="friend_button">
-      <p>*(friendship requested)*</p>
-      <form action='/friends/request' method="post">
-        <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
-        <input type="hidden" name="receiver_id" value="<%=@user.id%>">
-        <input type="submit" value="Accept Friendship">
-      </form>
-    </section>
-  <%end%>
-  <%if @user.receivers.include?(@self) && @user.senders.include?(@self)%>
-    <section class="friend_button">
-      <p>*(your friend)*</p>
-      <form action='/friends/delete_friend' method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete" >
-        <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
-        <input type="hidden" name="receiver_id" value="<%=@user.id%>">
-        <input type="submit" value="unfriend">
-      </form>
-    </section>
-  <%end%>
-  <%if !@self.senders.include?(@user) && !@self.receivers.include?(@user)%>
-    <section class="friend_button">
-      <form action='/friends/request' method="post">
-        <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
-        <input type="hidden" name="receiver_id" value="<%=@user.id%>">
-        <input type="submit" value="Request Friendship">
-      </form>
-    </section>
-  <%end%>
-<%end%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
+<div class="columns">
+  <div class="column">
+    <div class="box" style="background-color: #EAEAEA;">
+      <div class="home">
+        <div class="message-body">
+          <%if @user.id == session[:user_id]%>
+          <%end%>
+          <%if !@user.avatar.nil? %>
+          <%link = @user.avatar%>
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="<%=link%>">
+          </figure>
+          <%else%>
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="/images/profile_default.png">
+          </figure>
+          <%end%><br>
+          <%if @user.id == session[:user_id]%>
+          <form action="/pic" method="post">
+            <input class="input is-danger is-small is-rounded" type="text" name="avatar" placeholder="URL" required>
+            <br><br>
+            <input class="button is-danger has-text-weight-semibold" type="submit" value="update profile image">
+          </form>
+        </div>
+        <%end%>
+
+        <div class="columns ">
+          <div class="column is-half">
+            <%if @user.id != session[:user_id]%>
+            <%if @user.senders.include?(@self) && !@user.receivers.include?(@self)%>
+            <div class="friend_button">
+              <form action='/friends/delete_request' method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+                <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+                <input class="button is-large is-warning" type="submit" value="cancel request">
+              </form>
+            </div>
+            <%end%>
+            <%if @user.receivers.include?(@self) && !@user.senders.include?(@self)%>
+            <div class="friend_button">
+              <form action='/friends/request' method="post">
+                <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+                <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+                <input class="button is-large is-success" type="submit" value="accept friendship">
+              </form>
+            </div>
+            <%end%>
+            <%if @user.receivers.include?(@self) && @user.senders.include?(@self)%>
+            <div class="friend_button">
+              <form action='/friends/delete_friend' method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+                <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+                <input class="button is-large is-danger" type="submit" value="unfriend">
+              </form>
+            </div>
+            <%end%>
+            <%if !@self.senders.include?(@user) && !@self.receivers.include?(@user)%>
+            <div class="friend_button">
+              <form action='/friends/request' method="post">
+                <input type="hidden" name="sender_id" value="<%=self.current_user.id %>">
+                <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+                <input class="button is-large is-info" type="submit" value="request friendship">
+              </form>
+            </div>
+            <%end%>
+            <%end%>
+          </div>
+          <div class="column is-one-fifth">
+            <%if @user.id != session[:user_id]%>
+            <form action='/message' method='post'>
+              <input type="hidden" name="sender_id" value="<%=@self.id%>">
+              <input type="hidden" name="receiver_id" value="<%=@user.id%>">
+              <input class="button is-large is-success" type="submit" value="open chat">
+            </form>
+            <%end%>
+          </div>
+        </div>
+
+        <div class="message">
+          <div class="message-header"> Name: </div>
+          <div class="message-body has-text-weight-bold"> <%=@user.first_name%> <%=@user.last_name%></div>
+          <div class="message-header">Date of Birth: </div>
+          <div class="message-body has-text-weight-bold"><%=@user.dob%></div>
+          <div class="message-header">Gender: </div>
+          <div class="message-body has-text-weight-bold"><%=@user.gender%></div>
+          <div class="message-header">Email:</div>
+          <div class="message-body has-text-weight-bold"><%=@user.email%></div>
+        </div>
+
+        <%if @user.id == session[:user_id]%>
+        <div class="location notification has-text-weight-semibold">
+          Current Location:
+          <%=@location['city']%>,
+          <%=@location['region']%>, <%=@location['country']%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column ">
+    <div class="box" style="background-color: #EAEAEA;">
+      <div class="posts ">
+        <%if @user.id == session[:user_id]%>
+        <p class="has-text-weight-semibold is-size-5" style="text-align:left">Create New Post:</p>
+        <form action='/posts' method='post'>
+          <input class="input is-danger is-small is-rounded textarea" type="text" name="post_body" size="50" required>
+          <input type="hidden" name="user_id" value="<%=@user.id%>">
+          <input type="hidden" name="when_posted" <%@time = Time.now.to_s.split(' ')%>
+            value=" <%="#{@time[0]} at #{@time[1]}"%>"><br>
+          <input class="button is-danger has-text-weight-semibold" type="submit" value="post">
+        </form>
+        <%end%><br>
+        <div class="message-header">
+          <h3 class="has-text-weight-bold is-size-4">Posts:</h3>
+        </div>
+        <div class="message-body">
+          <%if @posts.size == 0%>
+          <p class="has-text-weight-semibold" style="text-align:center"><%="You have no posts yet."%></p>
+          <%end%>
+          <%counter = 0%>
+          <%while counter < 8%>
+          <%if @posts[counter] != nil%>
+          <h3 class="is-size-5 has-text-weight-semibold"><%=@posts[counter].post_body%></h3>
+          <h6 class="is-size-7">posted by: <%=User.find(@posts[counter].user_id).username%> on
+            <%=@posts[counter].when_posted %></h6>
+          <%counter += 1%><br>
+          <%else%>
+          <%counter += 1%>
+          <%end%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

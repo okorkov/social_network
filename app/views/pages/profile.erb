@@ -1,47 +1,65 @@
-<link rel="stylesheet" href="/stylesheets/profile.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-<section class="profile">
-  <h1>REVIEW OR EDIT YOUR PROFILE</h1> <br>
-  <form action="/profile/<%=@user.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <h2>User Name: <input type='text' name="username" value="<%=@user.username%>" size="16"></h2><br>
-    <h2>First Name: <input type='text' name="first_name" value="<%=@user.first_name%>" size="12">   Last Name: <input type='text' name="last_name" value="<%=@user.last_name%>" size="12"></h2> <br>
-    <h2>Email Address: <input type='text' name="email" value="<%=@user.email%>" size="25"></h2> <br>
-    <h2>Date of Birth: <input type='date' name="dob" value="<%=@user.dob%>" ></h2><br>
-    <h2>Gender: 
-      <input type="radio" id="male" name="gender" value="male" <%='checked' if @user.gender.include?("male") %>>
-      <label for="male"> male</label>
-      <input type="radio" id="female" name="gender" value="female" <%='checked' if @user.gender.include?("female") %>>
-      <label for="female"> female</label>
-      <input type="radio" id="other" name="gender" value="other" <%='checked' if @user.gender.include?("other") %>>
-      <label for="other"> other</label>
-    </h2><br>
-    <h2>Old Password <input type='password' name="old_password" size="16" id="myInput"> New Password <input type='password' name="new_password" size="16" id="myInput"></h2>
-    <p style="text-align:center"><input type="checkbox" onclick="myFunction()">Show Password</p><br>
-    <h2>Save Changes   <input type="submit" value='Update'></h2>
-  </form> <br><br>
 
-  <form action="/profile" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete" >
-    <h2 style="color:coral;">DELETE ACCOUNT <button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>DELETE</button></h2>
-      <script>
-        function ConfirmDelete() {
-          var x = confirm("Are you sure you want to delete your account? It'll be gone for good");
-          if (x)
-            return true;
-          else
-            return false;
-        }
-        function myFunction() {
-          var x = document.getElementById("myInput");
-          if (x.type === "password") {
-            x.type = "text";
-          } else {
-            x.type = "password";
+<div class="columns">
+  <div class="profile">
+    <div class="box notification is-black ">
+      <h1 class="has-text-weight-bold is-size-3">REVIEW OR EDIT YOUR PROFILE</h1>
+      <form action="/profile/<%=@user.id %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <h2 class="has-text-weight-bold is-size-5">User Name: <input class="input is-danger is-small is-rounded"
+            type='text' name="username" value="<%=@user.username%>" size="16"></h2>
+        <h2 class="has-text-weight-bold is-size-5">First Name: <input class="input is-danger is-small is-rounded"
+            type='text' name="first_name" value="<%=@user.first_name%>" size="12"> Last Name: <input
+            class="input is-danger is-small is-rounded" type='text' name="last_name" value="<%=@user.last_name%>"
+            size="12"></h2>
+        <h2 class="has-text-weight-bold is-size-5">Email Address: <input class="input is-danger is-small is-rounded"
+            type='text' name="email" value="<%=@user.email%>" size="25"></h2>
+        <h2 class="has-text-weight-bold is-size-5">Date of Birth: <input class="input is-danger is-small is-rounded"
+            type='date' name="dob" value="<%=@user.dob%>"></h2>
+        <h2 class="has-text-weight-bold is-size-5">Gender:
+          <input type="radio" id="male" name="gender" value="male" <%='checked' if @user.gender.include?("male") %>>
+          <label for="male"> male</label>
+          <input type="radio" id="female" name="gender" value="female"
+            <%='checked' if @user.gender.include?("female") %>>
+          <label for="female"> female</label>
+          <input type="radio" id="other" name="gender" value="other" <%='checked' if @user.gender.include?("other") %>>
+          <label for="other"> other</label>
+        </h2>
+        <h2 class="has-text-weight-bold is-size-5">Old Password <input class="input is-danger is-small is-rounded"
+            type='password' name="old_password" size="16" id="myInput"> New Password <input
+            class="input is-danger is-small is-rounded" type='password' name="new_password" size="16" id="myInput"></h2>
+        <p><input type="checkbox" onclick="myFunction()">Show Password</p><br>
+        <h2 class="has-text-weight-bold is-size-5">Save Changes <input
+            class="button is-danger is-small has-text-weight-semibold" type="submit" value='Update'></h2>
+      </form><br><br>
+
+      <form action="/profile" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <h2 class="has-text-weight-bold is-size-3" style="color:coral;">DELETE ACCOUNT</h2> <button
+          class="button is-danger is-medium has-text-weight-semibold" Onclick="return ConfirmDelete();" type="submit"
+          name="actiondelete" value='DELETE'>DELETE</button>
+        <script>
+          function ConfirmDelete() {
+            var x = confirm("Are you sure you want to delete your account? It'll be gone for good");
+            if (x)
+              return true;
+            else
+              return false;
           }
-        }
-      </script>  
-  </form>                                    
-</section>
 
-
+          function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+          }
+        </script>
+      </form>
+    </div>
+  </div>
+</div>

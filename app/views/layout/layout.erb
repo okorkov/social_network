@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <head>
-    <title>SocialNetwork</title>
-    <link rel="stylesheet" href="/stylesheets/layout.css" />
-  </head>
 
-  <body>
-    <h1 id="social-network">SocialNetwork</h1>
-    <section id="navigation">
-      <div class="links">
-        <h3><a href="/home">HOME</a></h3>
-      </div>
-      <div class="links">
-        <h3><a href="/friends">FRIENDS</a></h3>
-      </div>
-      <div class="links">
-        <h3><a href="/posts">POSTS</a></h3>
-      </div>
-      <div class="links">
-        <h3><a href="/profile">PROFILE</a></h3>
-      </div>
-    </section>
+<head>
+  <title>SocialNetwork</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
 
-      <h3 style="position:absolute; right:30px; top:2px" id='logout'><a href='/logout'>log out</a> </h3> 
-      <h3 style="position:absolute; right:400px; top:2px" id='logout_username'>Account (username): <%=self.current_user.username %><h3>
+<body class="box notification is-black">
+  <div class="columns" style="justify-content: flex-end;">
 
-      <%= yield %>
-      
-    <footer class="branding">
-        <a href="https://github.com/okorkov/social_network" target="_blank" <p>&copy; 2020 <strong>SocialNetwork</strong></p>
-    </footer>
-  </body>
+    <div class="button  is-danger is-pulled-right">
+      <p><a href='/logout'>log out</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="block">
+      <h1 class="is-size-1 has-text-weight-semibold" style="font-family:Georgia; text-decoration: underline;">
+        SocialNetwork</h1><br>
+      <div class="columns">
+        <div class="button is-outlined is-danger column">
+          <h3><a href="/home">HOME</a></h3>
+        </div>
+        <div class="button is-outlined is-danger column">
+          <h3><a href="/friends">FRIENDS</a></h3>
+        </div>
+        <div class="button is-outlined is-danger column">
+          <h3><a href="/posts">POSTS</a></h3>
+        </div>
+        <div class="button is-outlined is-danger column">
+          <h3><a href="/profile">PROFILE</a></h3>
+        </div>
+      </div>
+    </div>
+
+    <%= yield %>
+
+  </div>
+  <footer class="box notification is-black footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong> <a href="https://github.com/okorkov/social_network" target="_blank">SocialNetwork</strong></a> by Alex
+        Okarkau. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+      </p>
+    </div>
+  </footer>
+</body>
+
 </html>

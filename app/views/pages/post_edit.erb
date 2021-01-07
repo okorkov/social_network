@@ -1,16 +1,21 @@
-<link rel="stylesheet" href="/stylesheets/posts.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
 
 <div class="posts">
-  <p>Edit Post of <%=@user.first_name%> <%=@user.last_name%>:</p>
+    <div class="box notification is-black ">
+  <p class="has-text-weight-bold is-size-4">Edit Post of <%=@user.first_name%> <%=@user.last_name%>:</p>
   <form action="/posts/<%=@post.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <input type='text' name='post_body' value='<%=@post.post_body%>'>
-    <input type="submit" value="save">
+    <input class="input is-danger is-small is-rounded textarea"type='text' name='post_body' value='<%=@post.post_body%>'><br><br>
+    <input class="button is-danger is-small has-text-weight-semibold "type="submit" value="save">
   </form> <br><br>
  
   <form action="/posts/<%=@post.id%>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete" >
-    <h2 style="color:coral;"><button Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete this post</button></h2>
+    <h2 style="color:coral;"><button class="button is-danger is-medium has-text-weight-semibold"Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete this post</button></h2>
       <script>
         function ConfirmDelete() {
           var x = confirm("Are you sure you want to delete?");
@@ -20,5 +25,7 @@
             return false;
         }
       </script> 
+
+</div>
 </div>
 

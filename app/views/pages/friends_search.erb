@@ -1,25 +1,33 @@
-<link rel="stylesheet" href="/stylesheets/friends_search.css" />
-<link rel="stylesheet" href="/stylesheets/friends.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-<section class="friends_search_bar">
+<div class="friends_search_bar">
   <form action='/friends/search' method='get'>
-    <input type="text" name="name" size="50" placeholder="search for users" required>
-    <input type="submit" value="search">
+    <input class="input is-danger is-small is-rounded"type="text" name="name" size="50" placeholder="search for users" required><br><br>
+      <div class="content has-text-centered">
+    <input class="button is-danger is-small has-text-weight-semibold"type="submit" value="search">
+    </div>
   </form><br>
-</section>
+</div>
 
-<section class="results">
+<div class="results">
   <%if @all_matches.size != 0 && @all_matches[0] != nil %> 
     <%@all_matches.each do |user|%>
-      <a href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> 
+      <a class="is-size-4 has-text-weight-semibold"href="../profile/<%=user.id%>"><p> <%="#{user.first_name} #{user.last_name}"%> 
       <%if user.avatar != nil%> 
-        <img src="<%=user.avatar%>" width="30" height="30" style="border: 3px solid rgb(143, 18, 18);">
+        <a href="../profile/<%=user.id%>"> <img src="<%=user.avatar%>" class="image is-96x96" style="border: 3px solid rgb(143, 18, 18);"></a>
       <%else%>
-        <img src="/images/profile_default.png" width="30" height="30" style="border: 3px solid rgb(143, 18, 18);">
+     <a href="../profile/<%=user.id%>"> <img src="/images/profile_default.png" class="image is-96x96" style="border: 3px solid rgb(143, 18, 18);"></a>
       <%end%></p><br><br></a>
     <%end%>
   <%else%>
-    <h3>No users found</h3><br><br>
-    <a href='/friends'><h3>please try again</h3></a>
+  <div class="box notification is-black footer">
+    <div class="content has-text-centered">
+   <p>No users found<br><br>
+  please try again
+  </p>
   <%end%>
-</section>
+</div>
+</div>
+</div>
