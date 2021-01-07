@@ -5,17 +5,20 @@
 
 
 <div class="posts">
-    <div class="box notification is-black ">
-  <p class="has-text-weight-bold is-size-4">Edit Post of <%=@user.first_name%> <%=@user.last_name%>:</p>
-  <form action="/posts/<%=@post.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <input class="input is-danger is-small is-rounded textarea"type='text' name='post_body' value='<%=@post.post_body%>'><br><br>
-    <input class="button is-danger is-small has-text-weight-semibold "type="submit" value="save">
-  </form> <br><br>
- 
-  <form action="/posts/<%=@post.id%>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete" >
-    <h2 style="color:coral;"><button class="button is-danger is-medium has-text-weight-semibold"Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete this post</button></h2>
+  <div class="box notification is-black ">
+    <p class="has-text-weight-bold is-size-4">Edit Post of <%=@user.first_name%> <%=@user.last_name%>:</p>
+    <form action="/posts/<%=@post.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <input class="input is-danger is-small is-rounded textarea" type='text' name='post_body'
+        value='<%=@post.post_body%>'><br><br>
+      <input class="button is-danger is-small has-text-weight-semibold " type="submit" value="save">
+    </form> <br><br>
+
+    <form action="/posts/<%=@post.id%>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <h2 style="color:coral;"><button class="button is-danger is-medium has-text-weight-semibold"
+          Onclick="return ConfirmDelete();" type="submit" name="actiondelete" value='DELETE'>Delete this post</button>
+      </h2>
       <script>
         function ConfirmDelete() {
           var x = confirm("Are you sure you want to delete?");
@@ -24,8 +27,7 @@
           else
             return false;
         }
-      </script> 
+      </script>
 
+  </div>
 </div>
-</div>
-

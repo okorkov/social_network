@@ -1,44 +1,73 @@
-<link rel="stylesheet" href="/stylesheets/login.css" />
-<section id="login_page">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-  <h1 id="social-network">SocialNetwork<h1>
-  <div class="welcome">
-    <h3>Welcome to the SocialNetwork<h3>
-    <h6>Log in:</h6>
-  </div>
-  <div class="all_users"> <p> Users: <%=User.all.size %></p> </div>
-  <div class="login">
-    <form action='/login' method='post'>
-      <input type="text" name="username" placeholder="Username:" required>
-      <input type="password" name="password" placeholder="Password:" required> 
-      <input type="submit" value="Log In">
-    </form>
-  </div>
+<body class="box notification is-black">
+  <div class="container">
+    <div class="block">
+      <div class="welcome">
+        <div class="columns" style="justify-content: flex-end;">
+          <div class="is-pulled-right">
+            <div class="is-size-4 has-text-weight-semibold" class="all_users">
+              <p> Users: <%=User.all.size %></p>
+            </div>
+          </div>
+        </div>
+        <h1 class="is-size-1 has-text-weight-semibold" style="font-family:Georgia; text-decoration: underline;">
+          SocialNetwork</h1><br>
+        <div class="content has-text-centered">
+          <div class="columns is-mobile is-multiline is-centered">
+            <div class="column is-narrow">
+              <p>Log In<p>
+                  <div class="login">
+                    <form action='/login' method='post'>
+                      <input class="input is-danger is-small is-rounded" type="text" name="username"
+                        placeholder="Username:" required>
+                      <input class="input is-danger is-small is-rounded" type="password" name="password"
+                        placeholder="Password:" required>
+                      <input class="button is-danger has-text-weight-semibold" type="submit" value="Log In">
+                    </form>
+                  </div>
+            </div>
+            <div class="column is-narrow">
+              <p>Or Sign Up<p>
+                  <div class="signup">
+                    <form action='/signup' method='post'>
+                      <div> <input class="input is-danger is-small is-rounded " type="text" name="username"
+                          placeholder="Username:" required></div>
+                      <div> <input class="input is-danger is-small is-rounded" type="text" name="email"
+                          placeholder="Email:" required></div>
+                      <div> <input class="input is-danger is-small is-rounded" type="password" name="password"
+                          placeholder="Password:" required></div>
+                      <input class="input is-danger is-small is-rounded" type="text" name="first_name"
+                        placeholder="First Name:" required>
+                      <input class="input is-danger is-small is-rounded" type="text" name="last_name"
+                        placeholder="Last Name:" required>
+                      <p>Date of Birth:</p>
+                      <input class="input is-danger is-small is-rounded" type="date" id="birthday" name="dob" required>
+                      <br>
+                      <input type="radio" id="male" name="gender" value="male" required>
+                      <label for="male"> male</label>
+                      <input type="radio" id="female" name="gender" value="female" required>
+                      <label for="female"> female</label>
+                      <input type="radio" id="other" name="gender" value="other" required>
+                      <label for="other"> other</label><br>
+                      <input class="button is-danger has-text-weight-semibold" type="submit" value="Sign Up">
+                    </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
 
-  <p id="sign_up_offer">Or Sign Up<p>
-
-  <div class="signup">
-    <form action='/signup' method='post'>
-      <div> <input type="text" name="username" placeholder="Username:" required ></div>
-      <div> <input type="text" name="email" placeholder="Email:" required></div>
-      <div> <input type="password" name="password" placeholder="Password:" required></div>
-      <input type="text" name="first_name" placeholder="First Name:" required>
-      <input type="text" name="last_name" placeholder="Last Name:" required>
-      <p>Date of Birth:</p>
-      <input type="date" id="birthday" name="dob" required>
-      <br>
-      <input type="radio" id="male" name="gender" value="male" required>
-      <label for="male"> male</label>
-      <input type="radio" id="female" name="gender" value="female" required>
-      <label for="female"> female</label>
-      <input type="radio" id="other" name="gender" value="other" required>
-      <label for="other"> other</label><br>
-      <input type="submit" value="Sign Up">
-    </form>
+<footer class="box notification is-black footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong> <a href="https://github.com/okorkov/social_network" target="_blank">SocialNetwork</strong></a> by Alex
+      Okarkau. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+    </p>
   </div>
-
-  <div class="branding">
-    <a style="color: rgb(245, 205, 76);" href="https://github.com/okorkov/social_network" target="_blank" <p>&copy; 2020 <strong>SocialNetwork</strong></p>
-  </div>
-  
-</section>
+</footer>
+</div>

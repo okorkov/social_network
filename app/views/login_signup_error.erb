@@ -1,12 +1,26 @@
-<section id="login_page">
-  <link rel="stylesheet" href="/stylesheets/login.css" />
-  <style >
-    #error { position: absolute; top: 0; left:350; text-align: center; font-size: 40px;}
-  </style>
-  <div id="Error">
-    <img src="/images/error.png" width="300" height="270">
-    <h1><%= @message %></h1>
-    <h1>please try again</h1>
-    <a style="color:rgb(245, 205, 76);" href="/">back</a>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+<div class="box notification is-black">
+  <div class="content has-text-centered">
+    <div id="login_page">
+      <div id="Error">
+        <img src="/images/error.png" width="300" height="270">
+        <h1 class="has-text-weight-bold is-size-3"><%= @message %></h1>
+        <h1 class="has-text-weight-bold is-size-3">please try again</h1>
+        <a class="has-text-weight-bold is-size-2" href="/"> back</a>
+      </div>
+    </div>
   </div>
-</section>
+  <footer class="box notification is-black footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong> <a href="https://github.com/okorkov/social_network" target="_blank">SocialNetwork</strong></a> by Alex
+        Okarkau. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+      </p>
+    </div>
+  </footer>
+</div>
