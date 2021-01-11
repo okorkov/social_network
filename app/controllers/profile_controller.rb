@@ -23,6 +23,7 @@ class ProfileController < ApplicationController
 
   patch '/profile/:id' do
     @user = self.current_user
+    if @user.id == session[:user_id]
     case
       when params[:new_password] == "" && params[:old_password] == ""
         @user.username = params[:username]
@@ -51,14 +52,23 @@ class ProfileController < ApplicationController
         else
           redirect "error/old password doesn't match"
         end
-     end
+      end
+    else 
+      redirect "error/can't edit this profile"
+    end
   end
 
   delete '/profile' do
+    @user = self.current_user
+    if @user.id == session[:user_id]
     User.find_by(id: session[:user_id]).destroy
     redirect "/"
+    else
+      redirect "/error/can't delete profile that doesn't belongs to you"
+    end
   end
 
+  #LIVE CODING SECTION
   #Write a custom route so that when a user visits /profiles/most-popular, the visitor sees the user with the most friends
   #There are several ways to do it, so I'll leave it up to you to
   #HINT Look up the max_by Ruby method to help you find the user with the most friends 

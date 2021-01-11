@@ -2,21 +2,31 @@ class MessageController < ApplicationController
 
 
   post '/message' do
-    @chat = Message.where(params).first
-    if !@chat.nil?
-    redirect "/messages/#{@chat.id}"
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      @chat = Message.where(params).first
+      if !@chat.nil?
+      redirect "/messages/#{@chat.id}"
+      else
+        @new_message = Message.new(params)
+        @new_message.when_posted = Time.now
+        @new_message.message = "*opened chat with you*"
+        @new_message.save
+        redirect "/messages/#{@new_message.id}"
+      end
     else
-      @new_message = Message.new(params)
-      @new_message.when_posted = Time.now
-      @new_message.message = "*opened chat with you*"
-      @new_message.save
-      redirect "/messages/#{@new_message.id}"
+      redirect "/error/can't send message to this user"
     end
   end
 
   post '/message/new' do
-    Message.create(params)
-    redirect "/messages/#{Message.where(params).first.id}"
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      Message.create(params)
+      redirect "/messages/#{Message.where(params).first.id}"
+    else
+      redirect "/error/can't send message to this user"
+    end
   end
 
   get '/messages/:id' do

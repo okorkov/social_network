@@ -14,21 +14,36 @@ class FriendsController < ApplicationController
   end
 
   post '/friends/request' do
-    @sender = User.find(params[:sender_id])
-    @receiver = User.find(params[:receiver_id])
-    @receiver.senders << @sender
-    redirect "/profile/#{params[:receiver_id]}"
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      @sender = User.find(params[:sender_id])
+      @receiver = User.find(params[:receiver_id])
+      @receiver.senders << @sender
+      redirect "/profile/#{params[:receiver_id]}"
+    else
+      redirect "/error/action not allowed"
+    end
   end
 
   delete '/friends/delete_friend' do
-    Friend.where(sender_id: params[:sender_id], receiver_id: params[:receiver_id]).first.destroy
-    Friend.where(sender_id: params[:receiver_id], receiver_id: params[:sender_id]).first.destroy
-    redirect "/profile/#{params[:receiver_id]}"
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      Friend.where(sender_id: params[:sender_id], receiver_id: params[:receiver_id]).first.destroy
+      Friend.where(sender_id: params[:receiver_id], receiver_id: params[:sender_id]).first.destroy
+      redirect "/profile/#{params[:receiver_id]}"
+    else
+      redirect "/error/action not allowed"
+    end
   end
 
   delete '/friends/delete_request' do
-    Friend.where(sender_id: params[:sender_id], receiver_id: params[:receiver_id]).first.destroy
-    redirect "/profile/#{params[:receiver_id]}"
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      Friend.where(sender_id: params[:sender_id], receiver_id: params[:receiver_id]).first.destroy
+      redirect "/profile/#{params[:receiver_id]}"
+    else
+      redirect "/error/action not allowed"
+    end
   end
 
 end

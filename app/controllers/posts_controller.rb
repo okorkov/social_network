@@ -11,25 +11,45 @@ class PostsController < ApplicationController
   end
 
   post '/posts' do
-    Post.create(params)
-    redirect '/home'
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      Post.create(params)
+      redirect '/home'
+    else
+      redirect "/error/this post doesn't belongs to you"
+    end
   end
 
   post '/posts_page' do
-    Post.create(params)
-    redirect '/posts'
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      Post.create(params)
+      redirect '/posts'
+    else
+      redirect "/error/this post doesn't belongs to you"
+    end
   end
 
   delete '/posts' do
-    @posts = Post.where(user_id: params[:id])
-    @posts.each {|post| post.destroy}
-    redirect '/posts'
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      @posts = Post.where(user_id: params[:id])
+      @posts.each {|post| post.destroy}
+      redirect '/posts'
+    else
+      redirect "/error/this post doesn't belongs to you"
+    end
   end
 
   delete '/posts/:id' do
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect '/posts'
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      @post = Post.find(params[:id])
+      @post.destroy
+      redirect '/posts'
+    else
+      redirect "/error/this post doesn't belongs to you"
+    end
   end
 
   get '/posts/:id/edit' do
@@ -51,10 +71,15 @@ class PostsController < ApplicationController
   end
 
   patch '/posts/:id' do
-    @post = Post.find_by(id: params[:id])
-    @post.post_body = "#{params[:post_body]} -(edited)"
-    @post.save
-    redirect '/posts'
+    @user = self.current_user
+    if @user.id == session[:user_id]
+      @post = Post.find_by(id: params[:id])
+      @post.post_body = "#{params[:post_body]} -(edited)"
+      @post.save
+      redirect '/posts'
+    else
+      redirect "/error/this post doesn't belongs to you"
+    end
   end
 
 end

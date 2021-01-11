@@ -13,9 +13,13 @@ class HomeController < ApplicationController
 
   post '/pic' do
     @user = self.current_user
-    @user.avatar = params[:avatar]
-    @user.save
-    redirect "/home"
+    if @user.id == session[:user_id]
+      @user.avatar = params[:avatar]
+      @user.save
+      redirect "/home"
+    else
+      redirect "/error/can't update profile picture for this user"
+    end
   end
 
 end

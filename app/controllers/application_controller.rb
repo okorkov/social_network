@@ -59,6 +59,14 @@ class ApplicationController < Sinatra::Base
     erb :login_signup_error
   end
 
+  not_found do
+    redirect "/"
+  end
+
+  error do
+    redirect "/error/we've got an error"
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]
