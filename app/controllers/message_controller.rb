@@ -30,14 +30,16 @@ class MessageController < ApplicationController
   end
 
   get '/messages/:id' do
-    @chat = Message.chat(params[:id])
-    @self = self.current_user
-    if User.find(@chat.first.sender_id) == @self
-      @user = User.find(@chat.first.receiver_id)
-    else
-      @user = User.find(@chat.first.sender_id)
+    if self.logged_in?
+      @chat = Message.chat(params[:id])
+      @self = self.current_user
+      if User.find(@chat.first.sender_id) == @self
+        @user = User.find(@chat.first.receiver_id)
+      else
+        @user = User.find(@chat.first.sender_id)
+      end
+      erb :"/pages/messages", :layout => :"/layout/layout"
     end
-    erb :"/pages/messages", :layout => :"/layout/layout"
   end
 
 end

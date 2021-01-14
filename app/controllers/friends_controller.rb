@@ -1,16 +1,20 @@
 class FriendsController < ApplicationController
   
   get '/friends' do
-    @user = self.current_user 
-    @friends = @user.friends
-    @pending_friendship = @user.pending_friendship
-    erb :"/pages/friends", :layout => :"/layout/layout"
+    if self.logged_in?
+      @user = self.current_user 
+      @friends = @user.friends
+      @pending_friendship = @user.pending_friendship
+      erb :"/pages/friends", :layout => :"/layout/layout"
+    end
   end
 
   get '/friends/search' do
-    @user = self.current_user 
-    @all_matches = Friend.friend_search(params)
-    erb :"/pages/friends_search", :layout => :"/layout/layout"
+    if self.logged_in?
+      @user = self.current_user 
+      @all_matches = Friend.friend_search(params)
+      erb :"/pages/friends_search", :layout => :"/layout/layout"
+    end
   end
 
   post '/friends/request' do

@@ -3,21 +3,25 @@
 class ProfileController < ApplicationController
 
   get '/profile' do
-    @user = self.current_user
-    erb :"/pages/profile", :layout => :"/layout/layout"
+    if self.logged_in?
+      @user = self.current_user
+      erb :"/pages/profile", :layout => :"/layout/layout"
+    end
   end
 
   get '/profile/:id' do
-    id = params[:id]
-    if User.find_by(id: id)
-      @user = User.find(id)
-      @self = self.current_user
-      @location = CurrentLocation.location_info
-      @posts = Post.where(user_id: id).reverse
+    if self.logged_in?
+      id = params[:id]
+      if User.find_by(id: id)
+        @user = User.find(id)
+        @self = self.current_user
+        @location = CurrentLocation.location_info
+        @posts = Post.where(user_id: id).reverse
 
-      erb :"/pages/home", :layout => :"/layout/layout"
-    else
-      redirect '/error/there is no user with this id'
+        erb :"/pages/home", :layout => :"/layout/layout"
+      else
+        redirect '/error/there is no user with this id'
+      end
     end
   end
 
@@ -74,9 +78,11 @@ class ProfileController < ApplicationController
   #HINT Look up the max_by Ruby method to help you find the user with the most friends 
 
   get '/profiles/most-popular' do
-    @users = User.all
-    @most_popular_user = @users.max_by {|user| user.friends.length}
-    redirect "/profile/#{@most_popular_user.id}"
+    if self.logged_in?
+      @users = User.all
+      @most_popular_user = @users.max_by {|user| user.friends.length}
+      redirect "/profile/#{@most_popular_user.id}"
+    end
   end 
   
 end
