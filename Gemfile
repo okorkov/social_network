@@ -19,7 +19,6 @@ gem 'net-http'
 gem 'webpacker'
 
 group :development do
-  gem 'sqlite3', '~> 1.3.6'
   gem 'pry'
   gem 'rspec'
   gem 'capybara'
