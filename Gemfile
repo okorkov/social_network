@@ -17,6 +17,7 @@ gem 'uri'
 gem 'openssl'
 gem 'net-http'
 gem 'webpacker'
+gem 'pg'
 
 group :development do
   gem 'pry'
@@ -26,6 +27,3 @@ group :development do
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
 
-group :production do
-    gem 'pg'
-end
