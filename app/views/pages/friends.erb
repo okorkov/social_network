@@ -18,67 +18,67 @@
     <div class="has-text-weight-bold is-size-3 message-header">Your Friends:</div><br><br>
     <div class="message-body">
       <%if @friends.size > 0 %>
-      <div class="columns">
-      <%@friends.each do |user|%>
-      <div class=column>
-      <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
-        <p> <%="#{user.first_name} #{user.last_name}"%>
-      </a>
-      <%if user.avatar != nil%>
-      <a href="../profile/<%=user.id%>"> <img src="<%=user.avatar%>" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%else%>
-      <a href="../profile/<%=user.id%>"> <img src="/images/profile_default.png" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%end%>
-      <%end%>
+        <div class="columns">
+        <%@friends.each do |user|%>
+        <div class=column>
+          <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
+            <p> <%="#{user.first_name} #{user.last_name}"%>
+          </a>
+          <%if user.avatar != nil%>
+          <a href="../profile/<%=user.id%>"> <img src="<%=user.avatar%>" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%else%>
+          <a href="../profile/<%=user.id%>"> <img src="/images/profile_default.png" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%end%>
+        <%end%>
+        </div>
       </div>
-       </div>
       <%else%>
       <h3 class="is-size-4 has-text-weight-semibold">You don't have any friends added yet, try to serach people you know
         and add them to your friend list</h3><br><br>
-      <%end%><br><br><br>
-     
+      <%end%><br>
+
     </div>
     <%if @pending_friendship[:incoming].size > 0 %>
     <h3 class="has-text-weight-bold is-size-5 message-header">Incoming:</h3><br>
     <div class="message-body">
-    <div class="columns">
-      <%@pending_friendship[:incoming].each do |user|%>
-      <div class="column">
-      <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
-        <p> <%="#{user.first_name} #{user.last_name}"%>
-      </a>
-      <%if user.avatar != nil%>
-      <a href="../profile/<%=user.id%>"><img src="<%=user.avatar%>" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%else%>
-      <a href="../profile/<%=user.id%>"><img src="/images/profile_default.png" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%end%>
+      <div class="columns">
+        <%@pending_friendship[:incoming].each do |user|%>
+        <div class="column">
+          <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
+            <p> <%="#{user.first_name} #{user.last_name}"%>
+          </a>
+          <%if user.avatar != nil%>
+          <a href="../profile/<%=user.id%>"><img src="<%=user.avatar%>" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%else%>
+          <a href="../profile/<%=user.id%>"><img src="/images/profile_default.png" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%end%>
+        </div>
+        <%end%>
       </div>
-      <%end%>
-      </div>
-      <%end%><br><br><br>
+      <%end%><br>
       <%if @pending_friendship[:outgoing].size > 0 %>
     </div>
     <h3 class="has-text-weight-bold is-size-5 message-header">Outgoing:</h3><br>
     <div class="message-body">
-    <div class="columns">
-      <%@pending_friendship[:outgoing].each do |user|%>
-      <div class="column">
-      <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
-        <p> <%="#{user.first_name} #{user.last_name}"%>
-      </a>
-      <%if user.avatar != nil%>
-      <a href="../profile/<%=user.id%>"><img src="<%=user.avatar%>" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%else%>
-      <a href="../profile/<%=user.id%>"> <img src="/images/profile_default.png" class="image is-96x96"
-          style="border: 3px solid rgb(143, 18, 18);"></a>
-      <%end%>
-      </div>
-      <%end%>
+      <div class="columns">
+        <%@pending_friendship[:outgoing].each do |user|%>
+        <div class="column">
+          <a class="is-size-4 has-text-weight-semibold" href="../profile/<%=user.id%>">
+            <p> <%="#{user.first_name} #{user.last_name}"%>
+          </a>
+          <%if user.avatar != nil%>
+          <a href="../profile/<%=user.id%>"><img src="<%=user.avatar%>" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%else%>
+          <a href="../profile/<%=user.id%>"> <img src="/images/profile_default.png" class="image is-96x96"
+              style="border: 3px solid rgb(143, 18, 18);"></a>
+          <%end%>
+        </div>
+        <%end%>
       </div>
       <%end%>
       <%if @pending_friendship[:outgoing].size == 0 && @pending_friendship[:incoming].size == 0%>
