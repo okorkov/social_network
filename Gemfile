@@ -17,8 +17,10 @@ gem 'uri'
 gem 'openssl'
 gem 'net-http'
 gem 'webpacker'
+gem 'securerandom'
 
-group :development do
+group :development, :test do
+  gem 'sqlite3'
   gem 'pry'
   gem 'rspec'
   gem 'capybara'
@@ -27,5 +29,6 @@ group :development do
 end
 
 group :production do
-    gem 'pg'
+  gem 'pg'
+  gem 'rack-ssl-enforcer'
 end

@@ -1,17 +1,17 @@
-require 'dotenv/load'
-Dotenv.load
+ENV["RACK_ENV"] ||= 'development'
 
-ENV['SINATRA_ENV'] ||= "development"
+require 'bundler'
+Bundler.require(:default, ENV['RACK_ENV'])
 
-require 'bundler/setup'
-Bundler.require(:default, ENV['SINATRA_ENV'])
 
-ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
-)
+configure :development do
+  set :database, 'sqlite3:db/development.sqlite'
+end
 
-require './app/controllers/application_controller'
+configure :production do
+  set :database, ENV['DATABASE_URL']
+end
+
 require_all 'app'
 
 
