@@ -3,6 +3,7 @@ require 'rubygems'
 require 'sinatra'
 require './web'
 require './config/environment'
+require './app'
 
 run Sinatra::Application
 
