@@ -94,8 +94,11 @@
           <div class="message-body has-text-weight-bold"><%=@user.email%></div>
         </div>
 
-      
-        
+        <%if @user.id == session[:user_id]%>
+        <div class="location notification has-text-weight-semibold">
+          <%=@location['region']%>, <%=@location['country']%>
+          <%end%>
+        </div>
       </div>
     </div>
   </div>
