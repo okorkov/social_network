@@ -19,8 +19,8 @@ gem 'net-http'
 gem 'webpacker'
 gem 'securerandom'
 
-group :development, :test do
-  gem 'sqlite3'
+group :development  do
+ 
   gem 'pry'
   gem 'rspec'
   gem 'capybara'
