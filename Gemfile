@@ -18,17 +18,13 @@ gem 'openssl'
 gem 'net-http'
 gem 'webpacker'
 gem 'securerandom'
+  gem 'pg'
+  gem 'rack-ssl-enforcer'
 
 group :development  do
- 
   gem 'pry'
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end
-
-group :production do
-  gem 'pg'
-  gem 'rack-ssl-enforcer'
 end
