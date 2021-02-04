@@ -1,4 +1,8 @@
 require './config/environment'
+require 'sinatra'
+require 'sinatra/activerecord'
+require_relative './models/item'
+require_relative './config/environments'
 
 class ApplicationController < Sinatra::Base
 
