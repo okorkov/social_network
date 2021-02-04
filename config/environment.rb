@@ -1,10 +1,8 @@
 require 'bundler/setup'
-require_all 'app'
 
 Bundler.require
 configure :development do
  ENV['SINATRA_ENV'] ||= "development"
-require 'bundler/setup'
  Bundler.require(:default, ENV['SINATRA_ENV'])
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
@@ -24,3 +22,5 @@ configure :production do
    :encoding => 'utf8'
  )
 end
+
+require_all 'app'
