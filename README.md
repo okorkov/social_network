@@ -1,4 +1,4 @@
-Find this app running at https://socialnewtork.herokuapp.com/
+Find this app running at https://socialnetworksinatra.herokuapp.com/
 ________________________________________________________________________________________________________________________
 
 Overview:
