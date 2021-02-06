@@ -7,6 +7,8 @@ Overview:
 About This Project:
   This web app is build on Sinatra Framework, database(sqlite3 engine) managed by ActiveRecord, bcrypt used for hashing passwords, Down gem for download picture from 'http' source, api.ipify.org and ipinfo.io API keys for checking user's IP address and locating the region it associated with.
 
+  
+
 Installation instructions:
   * Download:
     1) Code -> Clone this repo
