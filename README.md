@@ -1,6 +1,8 @@
 Find this app running at https://socialnetworksinatra.herokuapp.com/
 ________________________________________________________________________________________________________________________
 
+![preview screen](./public/images/preview.png?raw=true "Title")
+
 Overview:
   This app is a version of a social network that allows you to create an account, securely sign up/ log in. In Social Network you can make friends, unfriend or cancel friend request if you changed you mind, you also can post messages on your wall that you can also edit or delete if you're not happy with it or review posts of your friends. You can also change all of the information if you wish that you entered during sign up process, including new password surely if you know the old one! And to jazz it up a bit you can set up you profile picture if you will provide a link in "http" or "https" format. On your home page You and only you can see your current location which is based on you IP address. You can be sure that no one else on this website have an access to your sensitive information and definitely no one can edit or delete your profile but you.
 
