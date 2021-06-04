@@ -11,8 +11,13 @@ use MessageController
 
 run ApplicationController
 
-class Rack::Protection::FrameOptions
-  def header
-    @header ||= {}
+module Rack
+  module Protection
+    class FrameOptions < Base
+      def call(env)
+        status, headers, body = @app.call(env)
+        [status, headers, body]
+      end
+    end
   end
 end
