@@ -10,7 +10,6 @@ end
 
 configure :production do
   set :database, ENV['DATABASE_URL']
-  set :protection, :except => :frame_options
 end
 
 
