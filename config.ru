@@ -21,3 +21,6 @@ module Rack
     end
   end
 end
+
+require 'rack/iframe'
+use Rack::Iframe

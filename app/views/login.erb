@@ -27,6 +27,13 @@
                         placeholder="Password:" required><br><br>
                       <input class="button is-danger has-text-weight-semibold" type="submit" value="Log In">
                     </form>
+                     <form action='/login' method='post'>
+                      <input class="input is-danger is-small is-rounded" type="hidden" name="username"
+                        value="demo" >
+                      <input class="input is-danger is-small is-rounded" type="hidden" name="password"
+                        value="12345">
+                      <input class="button is-success has-text-weight-semibold" type="submit" value="Skip Login (Demo Account)">
+                    </form>
                   </div>
             </div>
             <div class="column is-narrow">

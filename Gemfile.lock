@@ -84,6 +84,8 @@ GEM
     public_suffix (4.0.6)
     racc (1.5.2)
     rack (2.2.3)
+    rack-iframe (0.0.3)
+      rack
     rack-protection (2.1.0)
       rack
     rack-proxy (0.6.5)
@@ -176,6 +178,7 @@ DEPENDENCIES
   openssl
   pg
   pry
+  rack-iframe
   rack-ssl-enforcer
   rack-test
   rake

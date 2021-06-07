@@ -18,8 +18,10 @@ gem 'openssl'
 gem 'net-http'
 gem 'webpacker'
 gem 'securerandom'
-  gem 'pg'
-  gem 'rack-ssl-enforcer'
+gem 'pg'
+gem 'rack-ssl-enforcer'
+gem 'rack-iframe'
+
 
 group :development  do
   gem 'pry'
