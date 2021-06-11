@@ -65,8 +65,11 @@ class ProfileController < ApplicationController
   delete '/profile' do
     @user = self.current_user
     if @user.id == session[:user_id]
-    User.find_by(id: session[:user_id]).destroy
-    redirect "/"
+      if session[:user_id] == 1037
+        redirect "error/cannot delete demo account"
+      end
+      User.find_by(id: session[:user_id]).destroy
+      redirect "/"
     else
       redirect "/error/can't delete profile that doesn't belongs to you"
     end
